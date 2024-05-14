@@ -1,34 +1,89 @@
-version: "3.1"
-
-intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-
-responses:
-  utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
+version: '3.1'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+intents:
+- affirm
+- bot_challenge
+- deny
+- finalize
+- goodbye
+- greet
+- init_grammar_learning
+- mood_great
+- mood_unhappy
+- understood
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_ask_grammar_content_entity:
+  - text: what do you want to learn?
+  - text: What do you want to learn about?
+  - text: What do you want the class to be about?
+  - text: What content do you want the class about?
+  utter_anything_test:
+  - text: |
+      Frase de teste. Deu certo!
+      - answer_question_entity: {answer_question_entity}
+      - count_question_entity: {count_question_entity}
+      - current_question_id_entity: {current_question_id_entity}
+      - grammar_content_entity: {grammar_content_entity}
+      - vocabulary_content_entity: {vocabulary_content_entity}
+entities:
+- grammar_content_entity:
+  - influence_conversation: false
+- answer_question_entity
+- count_question_entity
+- current_question_id_entity
+- vocabulary_content_entity
+slots:
+  answer_question_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: answer_question_entity
+  count_question_entity:
+    type: float
+    initial_value: 0
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: count_question_entity
+    max_value: 1.0
+    min_value: 0.0
+  current_question_id_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: current_question_id_entity
+  grammar_content_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: grammar_content_entity
+  vocabulary_content_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: vocabulary_content_entity
+forms:
+  grammar_form:
+    required_slots:
+    - grammar_content_entity
+actions:
+- utter_anything_test

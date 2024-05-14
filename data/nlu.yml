@@ -1,5 +1,4 @@
 version: "3.1"
-
 nlu:
 - intent: greet
   examples: |
@@ -16,7 +15,6 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
-
 - intent: goodbye
   examples: |
     - cu
@@ -29,7 +27,6 @@ nlu:
     - see you around
     - bye bye
     - see you later
-
 - intent: affirm
   examples: |
     - yes
@@ -38,7 +35,6 @@ nlu:
     - of course
     - that sounds good
     - correct
-
 - intent: deny
   examples: |
     - no
@@ -48,7 +44,6 @@ nlu:
     - don't like that
     - no way
     - not really
-
 - intent: mood_great
   examples: |
     - perfect
@@ -65,7 +60,6 @@ nlu:
     - so so perfect
     - so good
     - so perfect
-
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -82,10 +76,51 @@ nlu:
     - extremly sad
     - so saad
     - so sad
-
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+- intent: finalize
+  examples: |
+    - finish
+    - finalize
+    - terminate
+    - end
+    - stop
+- intent: understood
+  examples: |
+    - understood
+    - I understood
+- intent: init_grammar_learning
+  examples: |
+    - teach me
+    - I want to learn
+    - give me a grammar lesson
+    - I want content
+    - I want a class
+    - learn
+    - teach me [preposition](grammar_content_entity) please
+    - teach me [much and many](grammar_content_entity)
+    - I want to learn [verb](grammar_content_entity)
+    - give me a [some any](grammar_content_entity) lesson
+    - give me a [so such](grammar_content_entity) lesson, please
+    - I want [plural nouns](grammar_content_entity) content, please
+    - I want [modal verbs](grammar_content_entity) class
+    - [pronouns](grammar_content_entity) lesson, please
+    - [in-on-at](grammar_content_entity) lesson
+    - learn [so such](grammar_content_entity)
+    - teach me [preposition](grammar_content_entity)
+    - teach me [articles](grammar_content_entity)
+- lookup: grammar_content_entity
+  examples: |
+    - preposition
+    - much and many
+    - so and such
+    - some any
+    - plural nouns
+    - modal verbs
+    - pronouns
+    - in on at
+    - articles
