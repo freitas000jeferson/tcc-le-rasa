@@ -29,5 +29,13 @@ rules:
           - requested_slot: null
       - action: utter_anything_test
   # ###################################-
+  # APRENDIZAGEM VOCABULARIO
+  # ###################################-
+  - rule: Activate Vocabulary learning Form
+    steps:
+      - intent: init_vocabulary_learning
+      - action: utter_anything_test
+
+  # ###################################-
   #
   # ###################################-

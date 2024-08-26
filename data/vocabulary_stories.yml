@@ -1,0 +1,13 @@
+version: "3.1"
+
+stories:
+  - story: vocabulary === Bem vindo === NÃO informando valor para grammar_content_entity
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: init_vocabulary_learning
+      - action: utter_anything_test
+  - story: interactive_story_1
+    steps:
+      - intent: init_vocabulary_learning
+      - action: utter_anything_test

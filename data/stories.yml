@@ -112,20 +112,34 @@ stories:
       - active_loop: null
       - action: utter_anything_test
 
-- story: interactive_story_1
-  steps:
-  - intent: init_grammar_learning
-  - action: grammar_form
-  - active_loop: grammar_form
-  - slot_was_set:
-    - requested_slot: grammar_content_entity
-  - intent: init_grammar_learning
-    entities:
-    - grammar_content_entity: articles
-  - slot_was_set:
-    - grammar_content_entity: articles
-  - action: grammar_form
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: utter_anything_test
+  - story: interactive_story_2
+    steps:
+      - intent: init_grammar_learning
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - requested_slot: grammar_content_entity
+      - intent: init_grammar_learning
+        entities:
+          - grammar_content_entity: articles
+      - slot_was_set:
+          - grammar_content_entity: articles
+      - action: grammar_form
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_anything_test
+
+  - story: interactive_story_3
+    steps:
+      - intent: init_grammar_learning
+        entities:
+          - grammar_content_entity: in on at
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: in on at
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_anything_test

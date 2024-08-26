@@ -10,8 +10,10 @@ intents:
 - goodbye
 - greet
 - init_grammar_learning
+- init_vocabulary_learning
 - mood_great
 - mood_unhappy
+- speak_more
 - understood
 responses:
   utter_greet:
