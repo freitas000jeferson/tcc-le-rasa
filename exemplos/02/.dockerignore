@@ -1,0 +1,8 @@
+env/
+venv/
+venv2/
+.rasa/
+# test/*
+# models/*
+# actions/*
+# **/*.md

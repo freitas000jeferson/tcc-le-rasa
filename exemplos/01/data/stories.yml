@@ -1,0 +1,553 @@
+version: "3.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: ===content=== interactive_story_1
+  steps:
+  - intent: inform_learn
+    entities:
+    - learning_content_entity: verb
+  - slot_was_set:
+    - learning_content_entity: verb
+  - action: learning_form
+  - active_loop: learning_form
+  - slot_was_set:
+    - requested_slot: learning_method_entity
+  - slot_was_set:
+    - learning_method_entity: text
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_learn_submit_form
+
+- story: ===content=== interactive_story_2
+  steps:
+  - intent: init_to_learn
+  - action: learning_form
+  - active_loop: learning_form
+  - slot_was_set:
+    - requested_slot: learning_content_entity
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - requested_slot: learning_method_entity
+  - slot_was_set:
+    - learning_method_entity: text
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_learn_submit_form
+
+- story: ===content=== interactive_story_3
+  steps:
+  - intent: inform_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: learning_form
+  - active_loop: learning_form
+  - slot_was_set:
+    - requested_slot: learning_method_entity
+  - slot_was_set:
+    - learning_method_entity: text
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_learn_submit_form
+
+- story: ===content=== interactive_story_4
+  steps:
+  - intent: inform_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: learning_form
+  - active_loop: learning_form
+  - slot_was_set:
+    - requested_slot: learning_content_entity
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_learn_submit_form
+
+- story: ===content=== interactive_story_5
+  steps:
+  - intent: inform_learn
+    entities:
+    - learning_method_entity: text
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_method_entity: text
+    - learning_content_entity: preposition
+  - action: learning_form
+  - active_loop: learning_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_learn_submit_form
+
+- story: ===question=== story_1
+  steps:
+  - intent: give_question
+  - action: question_form
+  - active_loop: question_form
+  - intent: answer_question
+    entities:
+    - answer_question_entity: are
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - learning_content_entity: are
+  - slot_was_set:
+    - answer_question_entity: are
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - count_question_entity: 1
+
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_questions_accepteds
+  - action: utter_goodbye
+
+- story: ===question=== story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - intent: give_question
+  - action: question_form
+  - active_loop: question_form
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - learning_content_entity: are
+  - slot_was_set:
+    - answer_question_entity: are
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - count_question_entity: 1
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - learning_content_entity: am
+  - slot_was_set:
+    - answer_question_entity: am
+  - slot_was_set:
+    - current_question_id_entity: '2'
+  - slot_was_set:
+    - count_question_entity: 1
+
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_questions_accepteds
+  - action: utter_goodbye
+
+
+- story: ===question=== story_3
+  steps:
+  - intent: give_question
+  - action: question_form
+  - active_loop: question_form
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '0'
+  - intent: answer_question
+    entities:
+    - answer_question_entity: am
+  - slot_was_set:
+    - answer_question_entity: am
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - count_question_entity: 1
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - intent: answer_question
+    entities:
+    - answer_question_entity: am
+  - slot_was_set:
+    - answer_question_entity: is
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '2'
+  - slot_was_set:
+    - count_question_entity: 2
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '2'
+  - intent: answer_question
+    entities:
+    - answer_question_entity: are
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - current_question_id_entity: '3'
+  - slot_was_set:
+    - count_question_entity: 2
+
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  
+  - action: action_questions_accepteds
+  - action: utter_goodbye
+
+- story: ===question=== story_4
+  steps:
+  - intent: give_question
+  - action: question_form
+  - active_loop: question_form
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '0'
+  - slot_was_set:
+    - answer_question_entity: am
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - count_question_entity: 1
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - answer_question_entity: is
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '2'
+  - slot_was_set:
+    - count_question_entity: 2
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '2'
+  - intent: answer_question
+    entities:
+    - answer_question_entity: am
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - slot_was_set:
+    - current_question_id_entity: '3'
+  - slot_was_set:
+    - count_question_entity: 2
+
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_questions_accepteds
+  - action: utter_goodbye
+
+
+- story: ===question=== story_5
+  steps:
+  - intent: give_question
+  - action: question_form
+  - active_loop: question_form
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '0'
+  - slot_was_set:
+    - answer_question_entity: am
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - count_question_entity: 1
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - answer_question_entity: is
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '2'
+  - slot_was_set:
+    - count_question_entity: 2
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '2'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - current_question_id_entity: '3'
+  - slot_was_set:
+    - count_question_entity: 2
+
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_questions_accepteds
+  - action: utter_goodbye
+- story: interactive_story_1
+  steps:
+  - intent: give_question
+  - action: question_form
+  - active_loop: question_form
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '0'
+  - slot_was_set:
+    - answer_question_entity: am
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - count_question_entity: 1
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - answer_question_entity: are
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '2'
+  - slot_was_set:
+    - count_question_entity: 1
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '2'
+  - slot_was_set:
+    - answer_question_entity: are
+  - slot_was_set:
+    - answer_question_entity: are
+  - slot_was_set:
+    - current_question_id_entity: '3'
+  - slot_was_set:
+    - count_question_entity: 2
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_questions_accepteds
+  - action: utter_goodbye
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - intent: give_question
+  - action: question_form
+  - active_loop: question_form
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '0'
+  - slot_was_set:
+    - answer_question_entity: am
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - count_question_entity: 1
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - answer_question_entity: are
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '2'
+  - slot_was_set:
+    - count_question_entity: 1
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '2'
+  - slot_was_set:
+    - answer_question_entity: are
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '3'
+  - slot_was_set:
+    - count_question_entity: 2
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '3'
+  - slot_was_set:
+    - answer_question_entity: is
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - current_question_id_entity: '4'
+  - slot_was_set:
+    - count_question_entity: 3
+
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '4'
+
+  - intent: answer_question
+    entities:
+    - answer_question_entity: "on"
+  - slot_was_set:
+    - answer_question_entity: "on"
+  - slot_was_set:
+    - answer_question_entity: null
+
+  - action: action_ask_answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '4'
+  - intent: answer_question
+    entities:
+    - answer_question_entity: are
+  - slot_was_set:
+    - answer_question_entity: are
+  - action: question_form
+  - slot_was_set:
+    - answer_question_entity: are
+  - slot_was_set:
+    - current_question_id_entity: '5'
+  - slot_was_set:
+    - count_question_entity: 4
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_questions_accepteds
+  - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: give_question
+  - action: question_form
+  - active_loop: question_form
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '0'
+  - intent: answer_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: are
+  - slot_was_set:
+    - answer_question_entity: are
+  - action: question_form
+  - slot_was_set:
+    - answer_question_entity: are
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - count_question_entity: 0
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_questions_accepteds
+  - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: give_question
+  - action: question_form
+  - active_loop: question_form
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '0'
+  - slot_was_set:
+    - answer_question_entity: there
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '0'
+  - slot_was_set:
+    - answer_question_entity: there
+  - slot_was_set:
+    - answer_question_entity: null
+  - slot_was_set:
+    - requested_slot: answer_question_entity
+  - slot_was_set:
+    - current_question_id_entity: '0'
+  - slot_was_set:
+    - answer_question_entity: am
+  - slot_was_set:
+    - answer_question_entity: Finalizando
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - count_question_entity: 1
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_questions_accepteds
+  - action: utter_goodbye

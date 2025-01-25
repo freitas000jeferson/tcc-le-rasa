@@ -1,0 +1,29 @@
+version: '3.0'
+services:
+  rasa-nlu:
+    container_name: "rasa_nlu"
+    image: rasa/rasa:3.2.4-full
+    ports:
+      - 5005:5005
+    volumes:
+      - ./:/app
+    entrypoint: ["/bin/sh","-c"]
+    command: 
+      - "rasa run --enable-api --credentials credentials.yml --cors '*'"
+    networks:
+      - network-v01
+
+  rasa-actions:
+    container_name: "rasa_actions"
+    # image:  rasa/rasa-sdk
+    build: ./actions/
+    ports: 
+      - 5055:5055
+    volumes:
+      - ./actions:/app/actions
+    networks:
+      - network-v01
+
+networks:
+  network-v01:
+    driver: bridge

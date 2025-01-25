@@ -1,0 +1,64 @@
+version: "3.0"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+# ############### #
+# Regra de aprendizagem de gramática
+# ############### #
+
+- rule: Activate Learn Form
+  steps:
+  - intent: init_to_learn
+  - action: learning_form
+  - active_loop: learning_form
+
+- rule: Submit Learn Form
+  condition:
+  - active_loop: learning_form
+  steps:
+  - action: learning_form
+  - active_loop: null
+  - slot_was_set: 
+    - requested_slot: null
+  - action: utter_learn_submit_form
+
+- rule: Activate Question Form
+  steps:
+  - intent: give_question
+  - action: question_form
+  - active_loop: question_form
+
+- rule: Submit Question Form
+  condition:
+  - active_loop: question_form
+  steps:
+  - action: question_form
+  - active_loop: null
+  - slot_was_set: 
+    - requested_slot: null
+  - action: action_questions_accepteds
+  - action: utter_goodbye
+
+- rule: Interrupt Question Form
+  condition:
+  - active_loop: question_form
+  steps:
+  - intent: answer_question
+    entities:
+    - answer_question_entity: null
+  - slot_was_set:
+    - answer_question_entity: null
+  - action: question_form
+  - active_loop: question_form
+
+

@@ -1,0 +1,136 @@
+version: "3.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: init_to_learn
+  examples: |
+    - I want to learn
+    - I want content
+    - I want a class
+    - learn
+    - i want to learn
+- intent: inform_learn
+  examples: |
+    - I want to learn [preposition](learning_content_entity)
+    - I want to learn [verb](learning_content_entity)
+    - I want to learn [present continuous](learning_content_entity)
+    - I want to learn [To be](learning_content_entity)
+    - I want to learn [simple past](learning_content_entity)
+    - i want to learn [preposition](learning_content_entity)
+    - i want to learn [verb](learning_content_entity)
+    - [text](learning_method_entity)
+    - [audio](learning_method_entity)
+    - in [text](learning_method_entity)
+    - in [video](learning_method_entity) format
+    - [video](learning_method_entity) format
+    - in the form of a [text](learning_method_entity)
+    - in the form of a [video](learning_method_entity)
+    - I want to learn [preposition](learning_content_entity) in [text](learning_method_entity)
+    - [preposition](learning_content_entity) in [video](learning_method_entity) format
+    - I want to learn [verb](learning_content_entity) in the form of a [text](learning_method_entity)
+- intent: give_question
+  examples: |
+    - give me a question
+- intent: answer_question
+  examples: |
+    - the answer is [will](answer_question_entity)
+    - the answer is [an](answer_question_entity)
+    - the correct answer is [she](answer_question_entity)
+    - the correct answer is [are](answer_question_entity)
+    - the answer is [he](answer_question_entity)
+    - the answer is [there](answer_question_entity)
+    - [is](answer_question_entity)
+    - [are](answer_question_entity)
+    - the answer is [am](answer_question_entity)
+    - [am](answer_question_entity)
+    - [on](answer_question_entity)
+    - [here](answer_question_entity)
+    - [where](answer_question_entity)
+    - [she](answer_question_entity)
+    - [he](answer_question_entity)
+    - [it](answer_question_entity)
+    - the answer is [are](answer_question_entity)
+    - [as](answer_question_entity)
+    - the answer is [there](answer_question_entity)
+    - [there](answer_question_entity)
+    - [am](answer_question_entity)

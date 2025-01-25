@@ -1,0 +1,123 @@
+version: "3.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - translate_that_word
+  - want_to_learn
+  - what_do_you_want_to_learn
+  - how_do_you_want_to_learn
+  - awnswer_question
+  - want_to_learn_complet
+  
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  # utter_ask_activity_category_entity:
+  # - text: "What subject do you want to learn about?"
+
+  utter_ask_how_do_you_to_learn:
+  - text: "How do you want to learn?"
+
+  utter_ask_what_do_you_to_learn:
+  - text: "What do you want to learn?"
+
+  utter_submit_question_category:
+  - text: "Ok, I will send you now"
+  - text: "Great, I'll think of one now"
+
+
+slots:
+  activity_what_learn_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: activity_what_learn_entity
+
+  activity_how_learn_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: activity_how_learn_entity
+      
+  question_id_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: question_id_entity
+  # form_of_translation_entity:
+  #   type: text
+  #   mappings:
+  #   - type: from_entity
+  #     entity: form_of_translation_entity
+  # pt_to_en:
+  #   type: text
+  #   mappings:
+  #   - type: from_entity
+  #     entity: form_of_translation_entity
+  #     role: pt_to_en
+  # en_to_pt:
+  #   type: text
+  #   mappings:
+  #   - type: from_entity
+  #     entity: form_of_translation_entity
+  #     role: en_to_pt
+
+# forms:
+#   activity_form:
+#     required_slots:
+#     - activity_what_learn_entity
+#     - activity_how_learn_entity
+  
+
+actions:
+  - action_answer_question
+  - action_translate
+  - action_get_question
+  - utter_greet
+  - utter_cheer_up
+  - utter_did_that_help
+  - utter_happy
+  - utter_goodbye
+  - utter_iamabot
+  - utter_submit_question_category
+  - utter_ask_how_do_you_to_learn
+  - utter_ask_what_do_you_to_learn
+
+entities:
+  - translate_word_entity
+  - form_of_translation_entity
+  - activity_what_learn_entity
+  - activity_how_learn_entity
+  - awnswer_question_entity
+  - question_id_entity
+ 
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

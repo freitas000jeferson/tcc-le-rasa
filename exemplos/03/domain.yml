@@ -1,0 +1,164 @@
+version: '3.1'
+intents:
+- affirm
+- answer_question
+- bot_challenge
+- deny
+- finalize_get_content
+- get_joke
+- goodbye
+- greet
+- how_and_what_to_learn
+- how_to_learn
+- i_want_to_train
+- init_to_learn
+- know_more
+- learn_something_else
+- mood_great
+- mood_unhappy
+- translate_that_word
+- what_is_the_content_of_the_training
+- what_to_learn
+responses:
+  utter_greet:
+  - condition:
+    - type: slot
+      name: logged_in
+      value: true
+    text: Hey, {name_user}. Nice to see you again! How are you?
+  - text: Hey! How are you?
+  - text: Welcome. How is your day going?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: agora vai
+  - text: ou talvez não
+  utter_ask_what_do_you_to_learn:
+  - text: What do you want to learn?
+  - text: What content do you want the class about?
+  utter_ask_how_do_you_to_learn:
+  - text: How do you want to learn?
+    buttons:
+    - title: text
+      payload: /how_to_learn{{"learning_method_entity":"text"}}
+    - title: video
+      payload: /how_to_learn{{"learning_method_entity":"video"}}
+  - text: How do you want the class?
+    buttons:
+    - title: text
+      payload: /how_to_learn{{"learning_method_entity":"text"}}
+    - title: video
+      payload: /how_to_learn{{"learning_method_entity":"video"}}
+  utter_ask_what_do_you_want_to_do_now:
+  - text: what do you want to do now?
+  utter_ask_want_another_format:
+  - text: want to see this content in another format?
+    buttons:
+    - title: yes
+      payload: /affirm
+    - title: no
+      payload: /deny
+  utter_finalize:
+  - text: ok, whenever you want I'm here
+  - text: See you
+  utter_ask_what_content_to_train:
+  - text: what content do you want to train?
+slots:
+  logged_in:
+    type: bool
+    influence_conversation: false
+    mappings:
+    - type: custom
+  name_user:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  learning_content_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: learning_content_entity
+  learning_method_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: learning_method_entity
+  current_question_id_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: current_question_id_entity
+  answer_question_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: answer_question_entity
+  count_question_entity:
+    type: float
+    initial_value: 0
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: count_question_entity
+  qtd_questions_entity:
+    type: float
+    initial_value: 0
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: qtd_questions_entity
+  end_loop_session:
+    type: bool
+    initial_value: false
+    influence_conversation: true
+    mappings:
+    - type: custom
+  finishing_questions_entity:
+    type: bool
+    initial_value: false
+    influence_conversation: true
+    mappings:
+    - type: custom
+actions:
+- action_answer_question
+- action_finalize_questions
+- action_get_content
+- action_get_question
+- action_hello_world
+- action_init_questions
+- action_translate
+- utter_ask_how_do_you_to_learn
+- utter_ask_want_another_format
+- utter_ask_what_do_you_to_learn
+- utter_ask_what_do_you_want_to_do_now
+- utter_cheer_up
+- utter_did_that_help
+- utter_finalize
+- utter_goodbye
+- utter_greet
+- utter_happy
+- utter_iamabot
+entities:
+- learning_method_entity
+- answer_question_entity
+- learning_content_entity
+- translate_word_entity
+- current_question_id_entity
+- count_question_entity
+- qtd_questions_entity
+- finishing_questions_entity
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

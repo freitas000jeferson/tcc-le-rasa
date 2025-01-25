@@ -1,0 +1,157 @@
+version: "3.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: translate_that_word
+  examples: |
+    - translate [cao]{"entity": "translate_word_entity" } to  [english]{"entity": "form_of_translation_entity", "value": "pt_to_en"}
+    - translate for me [dog]{"entity": "translate_word_entity" } to  [portuguese]{"entity": "form_of_translation_entity", "value": "en_to_pt"}
+    - translate for me [cao]{"entity": "translate_word_entity" } to  [english]{"entity": "form_of_translation_entity", "value": "pt_to_en"}
+    - how to say [gato]{"entity": "translate_word_entity" } in [ingles]{"entity": "form_of_translation_entity", "value": "pt_to_en"}
+    - how to say [cao]{"entity": "translate_word_entity" } in [english]{"entity": "form_of_translation_entity", "value": "pt_to_en"}
+    - how to say [cat]{"entity": "translate_word_entity" } in [portugues]{"entity": "form_of_translation_entity", "value": "en_to_pt"}
+
+- intent: want_to_learn
+  examples: |
+    - I want to learn
+
+- intent: what_do_you_want_to_learn
+  examples: |
+    - I want to learn [prepositions]{"entity": "activity_what_learn_entity", "value": "prepositions"}
+    - this time I will learn [simple present]{"entity": "activity_what_learn_entity", "value": "simple present"}
+    - today I want [to be]{"entity": "activity_what_learn_entity", "value": "to be"}
+    - [simple past]{"entity": "activity_what_learn_entity", "value": "simple past"}
+    - [present continuous]{"entity": "activity_what_learn_entity", "value": "present continuous"}
+    - [verb]{"entity": "activity_what_learn_entity", "value": "verb"}
+
+- intent: how_do_you_want_to_learn
+  examples: |
+    - in [text]{"entity": "activity_how_learn_entity", "value":"text"}
+    - I want in [video]{"entity": "activity_how_learn_entity", "value":"video"} format
+    - in the form of a [question]{"entity": "activity_how_learn_entity", "value":"quizzes"}
+    - [activity]{"entity": "activity_how_learn_entity", "value":"quizzes"}
+    - [quizzes]{"entity": "activity_how_learn_entity", "value":"quizzes"}
+
+- intent: want_to_learn_complet
+  examples: |
+    - I want to learn [verb]{"entity": "activity_what_learn_entity", "value": "verb"} in [video]{"entity": "activity_how_learn_entity", "value":"video"} format
+    - Give me a [simple past]{"entity": "activity_what_learn_entity", "value": "simple past"} [question]{"entity": "activity_how_learn_entity", "value":"quizzes"} 
+
+# - intent: get_question_category
+#   examples: |
+#     - give me a [to be]{"entity": "question_category_entity", "value": "to be"} question 
+#     - give me a [simple present]{"entity": "question_category_entity", "value": "simple present"} activity 
+#     - I want a [prepositions]{"entity": "question_category_entity", "value": "prepositions"} question
+#     - I want a [simple present]{"entity": "question_category_entity", "value": "simple present"} activity 
+#     - [prepositions]{"entity": "question_category_entity", "value": "prepositions"} activity
+#     - [simple present]{"entity": "question_category_entity", "value": "simple present"} question 
+#     - [to be]{"entity": "question_category_entity", "value": "to be"} question 
+#     - [simple past]{"entity": "question_category_entity", "value": "simple past"} activity
+#     - [simple present]{"entity": "question_category_entity", "value": "simple present"} question 
+
+- intent: awnswer_question
+  examples: |
+    - [am]{"entity": "awnswer_question_entity"}
+    - [is]{"entity": "awnswer_question_entity"}
+    - [are]{"entity": "awnswer_question_entity"}
+    - [do]{"entity": "awnswer_question_entity"}
+    - [does]{"entity": "awnswer_question_entity"}
+    - [on]{"entity": "awnswer_question_entity"}
+    - [to]{"entity": "awnswer_question_entity"}
+    - [in]{"entity": "awnswer_question_entity"}
+    - [for]{"entity": "awnswer_question_entity"}
+    - [of]{"entity": "awnswer_question_entity"}
+    - [with]{"entity": "awnswer_question_entity"}
+    - [over]{"entity": "awnswer_question_entity"}
+    - [across]{"entity": "awnswer_question_entity"}
+    - [through]{"entity": "awnswer_question_entity"}
+    - [at]{"entity": "awnswer_question_entity"}
+

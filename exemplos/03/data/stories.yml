@@ -1,0 +1,1235 @@
+version: "3.1"
+
+stories:
+
+# - story: happy path
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_great
+#   - action: utter_happy
+
+# - story: sad path 1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: affirm
+#   - action: utter_happy
+
+# - story: sad path 2
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: deny
+#   - action: utter_goodbye
+
+# - story: get joke path 1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: get_joke
+#   - action: action_joke
+
+# - story: get joke path 2
+#   steps:
+#   - intent: get_joke
+#   - action: action_joke
+
+- story: translate words path 1
+  steps:
+  - intent: translate_that_word
+    entities:
+      - form_of_translation_entity: "pt_to_en"
+      - translate_word_entity: "cao"
+  - action: action_translate
+
+- story: ===begin learning flow=== part 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - checkpoint: check_init_learning_flow
+
+- story: handle user saying ===what do you learn=== part 1 
+  steps:
+  - checkpoint: check_init_learning_flow
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+      - learning_content_entity: "preposition"
+  - action: utter_ask_how_do_you_to_learn
+  - checkpoint: check_asked_how_to_learn
+
+- story: handle user saying ===what do you learn=== part 2
+  steps:
+  - checkpoint: check_init_learning_flow
+  - intent: what_to_learn
+    entities:
+      - learning_content_entity: "preposition"
+  - action: utter_ask_how_do_you_to_learn
+  - checkpoint: check_asked_how_to_learn
+
+- story: handle user saying ===what do you learn=== part 3
+  steps:
+  - checkpoint: check_init_learning_flow
+  - intent: how_and_what_to_learn
+    entities:
+      - learning_content_entity: "preposition"
+      - learning_method_entity: "text"
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - checkpoint: check_asked_what_do_you_want_to_do_now
+
+
+- story: handle user saying ===how do you learn=== part 1
+  steps:
+  - checkpoint: check_asked_how_to_learn
+  - intent: how_to_learn
+    entities:
+      - learning_method_entity: "text"
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - checkpoint: check_asked_what_do_you_want_to_do_now
+
+
+# Steps decision next steps after get content
+- story: handle user saying ===what do want to do now=== another format part 1
+  steps:
+  - checkpoint: check_asked_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - checkpoint: check_decision_another_format
+
+- story: handle user saying ===what do want to do now=== finalize part 2
+  steps:
+  - checkpoint: check_asked_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+
+- story: handle user saying ===what do want to do now=== something else part 3
+  steps:
+  - checkpoint: check_asked_what_do_you_want_to_do_now
+  - intent: learn_something_else
+  - action: utter_ask_what_do_you_to_learn
+  - checkpoint: check_init_learning_flow
+
+- story: handle user saying ===what do want to do now=== part 4
+  steps:
+  - checkpoint: check_asked_what_do_you_want_to_do_now
+  - intent: i_want_to_train
+  - action: action_init_questions
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 0
+    - current_question_id_entity: '1'
+  - action: action_get_question
+  - checkpoint: check_init_questions_flow
+
+- story: handle user ==answer question== part 1
+  steps:
+  - checkpoint: check_init_questions_flow
+  - intent: answer_question
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 1
+    - current_question_id_entity: '11'
+  - action: action_get_question
+  - intent: answer_question
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 2
+    - current_question_id_entity: '111'
+  - action: action_get_question
+  - intent: answer_question
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 3
+    - current_question_id_entity: ''
+
+
+- story: handle user affirm ===decision another format=== part 1
+  steps:
+  - checkpoint: check_decision_another_format
+  - intent: affirm
+  - action: utter_ask_how_do_you_to_learn
+  - checkpoint: check_asked_how_to_learn
+
+- story: handle user deny ===decision another format=== part 2
+  steps:
+  - checkpoint: check_decision_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - checkpoint: check_asked_what_do_you_want_to_do_now
+
+# 
+# ###################################################
+# 
+# Histórias completas
+- story: learning path 01
+  steps:
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+      - learning_content_entity: "preposition"
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+      - learning_method_entity: "text"
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+  # todo: continuar
+
+
+- story: learning path 02
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+      - learning_content_entity: "preposition"
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+      - learning_method_entity: "text"
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+  # todo: continuar
+
+
+- story: learning path 03
+  steps:
+  - intent: what_to_learn
+    entities:
+      - learning_content_entity: "preposition"
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+      - learning_method_entity: "text"
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+  # todo: continuar
+
+
+- story: learning path 04
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: what_to_learn
+    entities:
+      - learning_content_entity: "preposition"
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+      - learning_method_entity: "text"
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+  # todo: continuar
+
+- story: learning path 05
+  steps:
+  - intent: how_and_what_to_learn
+    entities:
+      - learning_content_entity: "preposition"
+      - learning_method_entity: "text"
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+  # todo: continuar
+
+- story: learning path 06
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: how_and_what_to_learn
+    entities:
+      - learning_content_entity: "preposition"
+      - learning_method_entity: "text"
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+  # todo: continuar
+
+#  ------------------------------------------------------------------
+
+- story: ===finalize after get content=== interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+
+- story: ===loop another format=== interactive_story_2
+  steps:
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: video
+  - slot_was_set:
+    - learning_method_entity: video
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+
+- story: ===loop another format=== interactive_story_3
+  steps:
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: video
+  - slot_was_set:
+    - learning_method_entity: video
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+
+- story: ===loop another format=== interactive_story_4
+  steps:
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: video
+  - slot_was_set:
+    - learning_method_entity: video
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now  
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: affirm
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+
+- story: ===loop another format=== interactive_story_5
+  steps:
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: video
+  - slot_was_set:
+    - learning_method_entity: video
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: affirm
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now  
+  - intent: finalize_get_content
+  - action: utter_finalize
+
+- story: ===loop another format=== interactive_story_6
+  steps:
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: video
+  - slot_was_set:
+    - learning_method_entity: video
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: affirm
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: affirm
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now  
+  - intent: finalize_get_content
+  - action: utter_finalize
+
+- story: ===loop another format=== interactive_story_7
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: affirm
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: video
+  - slot_was_set:
+    - learning_method_entity: video
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: affirm
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+
+- story: ===loop another content=== interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+
+  - intent: learn_something_else
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+
+- story: ===loop another content=== interactive_story_2 
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: learn_something_else
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: verb
+  - slot_was_set:
+    - learning_content_entity: verb
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: video
+  - slot_was_set:
+    - learning_method_entity: video
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: finalize_get_content
+  - action: utter_finalize
+
+# --------------------------------------------------------------------
+
+- story: ===execute quiz=== interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  
+  - intent: i_want_to_train
+  - action: action_init_questions
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 0
+    - current_question_id_entity: '1'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 1
+    - current_question_id_entity: '11'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'am'
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 2
+    - current_question_id_entity: '111'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 3
+    - current_question_id_entity: ''
+  
+
+
+- story: ===execute quiz=== interactive_story_2
+  steps:
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: video
+  - slot_was_set:
+    - learning_method_entity: video
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  
+  - intent: i_want_to_train
+  - action: action_init_questions
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 0
+    - current_question_id_entity: '1'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 1
+    - current_question_id_entity: '11'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'am'
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 2
+    - current_question_id_entity: '111'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 3
+    - current_question_id_entity: ''
+  
+
+
+- story: ===execute quiz=== interactive_story_3
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: affirm
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: video
+  - slot_was_set:
+    - learning_method_entity: video
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: affirm
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  
+  - intent: i_want_to_train
+  - action: action_init_questions
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 0
+    - current_question_id_entity: '1'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 1
+    - current_question_id_entity: '11'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'am'
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 2
+    - current_question_id_entity: ''
+  
+
+
+- story: ===execute quiz=== interactive_story_4
+  steps:
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+
+  - intent: learn_something_else
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+
+  - intent: know_more
+  - action: utter_ask_want_another_format
+  - intent: deny
+  - action: action_get_content
+
+  - action: utter_ask_what_do_you_want_to_do_now
+  
+  - intent: i_want_to_train
+  - action: action_init_questions
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 0
+    - current_question_id_entity: '1'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 1
+    - current_question_id_entity: '11'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'am'
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 2
+    - current_question_id_entity: '111'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 3
+    - current_question_id_entity: ''
+
+
+- story: ===execute quiz=== interactive_story_5 
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: learn_something_else
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: verb
+  - slot_was_set:
+    - learning_content_entity: verb
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: video
+  - slot_was_set:
+    - learning_method_entity: video
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  
+  
+  - intent: i_want_to_train
+  - action: action_init_questions
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 0
+    - current_question_id_entity: '1'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 1
+    - current_question_id_entity: '11'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'am'
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 2
+    - current_question_id_entity: ''
+  
+
+
+- story: ===execute quiz without content===  interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: i_want_to_train
+  - action: utter_ask_what_content_to_train
+  - intent: what_is_the_content_of_the_training
+    entities:
+    - learning_content_entity: preposition
+  - slot_was_set:
+    - learning_content_entity: preposition
+  - action: action_init_questions
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 0
+    - current_question_id_entity: '1'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 1
+    - current_question_id_entity: '11'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'am'
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 2
+    - current_question_id_entity: ''
+
+
+- story: ===execute quiz without content===  interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: i_want_to_train
+  - action: utter_ask_what_content_to_train
+  - intent: what_is_the_content_of_the_training
+    entities:
+    - learning_content_entity: verb
+  - slot_was_set:
+    - learning_content_entity: verb
+  - action: action_init_questions
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 0
+    - current_question_id_entity: '1'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 1
+    - current_question_id_entity: '11'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'am'
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 2
+    - count_question_entity: 2
+    - current_question_id_entity: ''
+
+
+- story: ===execute quiz without content===  interactive_story_3
+  steps:
+  - intent: i_want_to_train
+  - action: utter_ask_what_content_to_train
+  - intent: what_is_the_content_of_the_training
+    entities:
+    - learning_content_entity: verb
+  - slot_was_set:
+    - learning_content_entity: verb
+  - action: action_init_questions
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 0
+    - current_question_id_entity: '1'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 1
+    - current_question_id_entity: '11'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'am'
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 2
+    - current_question_id_entity: '111'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 3
+    - current_question_id_entity: ''
+  
+- story: ===execute quiz without content===  interactive_story_4
+  steps:
+  - intent: i_want_to_train
+  - action: utter_ask_what_content_to_train
+  - intent: what_is_the_content_of_the_training
+    entities:
+    - learning_content_entity: verb
+  - slot_was_set:
+    - learning_content_entity: verb
+  - action: action_init_questions
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 0
+    - current_question_id_entity: '1'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 1
+    - current_question_id_entity: '11'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'am'
+  - slot_was_set:
+    - answer_question_entity: 'am'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 2
+    - current_question_id_entity: '111'
+  
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: 'are'
+  - slot_was_set:
+    - answer_question_entity: 'are'
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+    - count_question_entity: 3
+    - current_question_id_entity: ''
+  
+
+
+- story: ===execute quiz=== interactive_story_5
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: init_to_learn
+  - action: utter_ask_what_do_you_to_learn
+  - intent: what_to_learn
+    entities:
+    - learning_content_entity: verb
+  - slot_was_set:
+    - learning_content_entity: verb
+  - action: utter_ask_how_do_you_to_learn
+  - intent: how_to_learn
+    entities:
+    - learning_method_entity: text
+  - slot_was_set:
+    - learning_method_entity: text
+  - action: action_get_content
+  - action: utter_ask_what_do_you_want_to_do_now
+  - intent: i_want_to_train
+  - action: action_init_questions
+  - slot_was_set:
+    - qtd_questions_entity: 3
+  - slot_was_set:
+    - current_question_id_entity: '1'
+  - slot_was_set:
+    - count_question_entity: 0
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: are
+  - slot_was_set:
+    - answer_question_entity: are
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+  - slot_was_set:
+    - current_question_id_entity: '11'
+  - slot_was_set:
+    - count_question_entity: 1
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: am
+  - slot_was_set:
+    - answer_question_entity: am
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+  - slot_was_set:
+    - current_question_id_entity: '111'
+  - slot_was_set:
+    - count_question_entity: 2
+  - action: action_get_question
+  - intent: answer_question
+    entities:
+    - answer_question_entity: are
+  - slot_was_set:
+    - answer_question_entity: are
+  - action: action_answer_question
+  - slot_was_set:
+    - qtd_questions_entity: 3
+  - slot_was_set:
+    - current_question_id_entity: '1111'
+  - slot_was_set:
+    - count_question_entity: 3
+

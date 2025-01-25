@@ -1,0 +1,172 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: translate_that_word
+  examples: |
+    - translate [cao](translate_word_entity) to  [english]{"entity": "form_of_translation_entity", "value": "pt_to_en"}
+    - translate for me [dog](translate_word_entity) to  [portuguese]{"entity": "form_of_translation_entity", "value": "en_to_pt"}
+    - how to say [gato](translate_word_entity) in [ingles]{"entity": "form_of_translation_entity", "value": "pt_to_en"}
+    - how to say [cat](translate_word_entity) in [portugues]{"entity": "form_of_translation_entity", "value": "en_to_pt"}
+- intent: init_to_learn
+  examples: |
+    - I want to learn
+    - I want content
+    - I want a class
+    - i want to learn
+- intent: what_to_learn
+  examples: |
+    - I want to learn [preposition](learning_content_entity)
+    - I want to learn [verb](learning_content_entity)
+    - I want to learn [present continuous](learning_content_entity)
+    - I want to learn [To be](learning_content_entity)
+    - I want to learn [simple past](learning_content_entity)
+    - i want to learn [preposition](learning_content_entity)
+    - i want to learn
+    - i want to learn [verb](learning_content_entity)
+    - i want to learn [preposition](learning_content_entity)
+    - i want to learn [verb](learning_content_entity)
+- intent: how_to_learn
+  examples: |
+    - [text](learning_method_entity)
+    - in [text](learning_method_entity)
+    - [video](learning_method_entity) format
+    - in the form of a [text](learning_method_entity)
+- intent: how_and_what_to_learn
+  examples: |
+    - I want to learn [preposition](learning_content_entity) in [text](learning_method_entity)
+    - [preposition](learning_content_entity) in [video](learning_method_entity) format
+    - I want to learn [verb](learning_content_entity) in the form of a [text](learning_method_entity)
+- intent: know_more
+  examples: |
+    - I want know more
+    - I want to learn more
+    - i want know more
+    - i want to learn more
+- intent: finalize_get_content
+  examples: |
+    - for now it's just
+    - finish here
+- intent: learn_something_else
+  examples: |
+    - I want to learn something else
+    - let's learn something else
+    - i want to learn something else
+- intent: i_want_to_train
+  examples: |
+    - I want to train
+    - I want a question
+    - give me a question
+    - i want to train
+- intent: what_is_the_content_of_the_training
+  examples: |
+    - I want to [present continuous](learning_content_entity) question
+    - I want to [preposition](learning_content_entity) question
+    - I want to [to be](learning_content_entity) question
+    - give me a [verb](learning_content_entity) question
+    - give me a [simple past](learning_content_entity) question
+    - give me a [preposition](learning_content_entity) question
+    - give me a [to be](learning_content_entity) question
+- intent: answer_question
+  examples: |
+    - the answer is [is](answer_question_entity)
+    - the answer is [are](answer_question_entity)
+    - the answer is [am](answer_question_entity)
+    - the correct answer is [she](answer_question_entity)
+    - the correct answer is [are](answer_question_entity)
+    - the answer is [are](answer_question_entity)
+    - the answer is [am](answer_question_entity)
+    - this answer is [are](answer_question_entity)
+- synonym: pt_to_en
+  examples: |
+    - english
+    - ingles
+- synonym: en_to_pt
+  examples: |
+    - portuguese
+    - portugues
+- lookup: learning_method_entity
+  examples: |
+    - video
+    - text
+    - audio

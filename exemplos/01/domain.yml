@@ -1,0 +1,110 @@
+version: '3.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- answer_question
+- give_question
+- greet
+- mood_great
+- inform_learn
+- init_to_learn
+- goodbye
+- affirm
+- deny
+- mood_unhappy
+- bot_challenge
+entities:
+- answer_question_entity
+- count_question_entity
+- current_question_id_entity
+- learning_content_entity
+- learning_method_entity
+slots:
+  learning_content_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: learning_content_entity
+  learning_method_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: learning_method_entity
+  answer_question_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: answer_question_entity
+  current_question_id_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: current_question_id_entity
+  count_question_entity:
+    type: float
+    initial_value: 0
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: count_question_entity
+    max_value: 1.0
+    min_value: 0.0
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_learn_submit_form:
+  - text: 'Deu bom! learning_content_entity: {learning_content_entity}; learning_method_entity: {learning_method_entity}'
+  utter_ask_learning_content_entity:
+  - text: What do you want to learn?
+  - text: What content do you want the class about?
+  utter_ask_learning_method_entity:
+  - text: How do you want to learn?
+    buttons:
+    - title: text
+      payload: /how_to_learn{{"learning_method_entity":"text"}}
+    - title: video
+      payload: /how_to_learn{{"learning_method_entity":"video"}}
+  - text: How do you want the class?
+    buttons:
+    - title: text
+      payload: /how_to_learn{{"learning_method_entity":"text"}}
+    - title: video
+      payload: /how_to_learn{{"learning_method_entity":"video"}}
+actions:
+- action_ask_answer_question_entity
+- action_questions_accepteds
+- utter_ask_learning_content_entity
+- utter_ask_learning_method_entity
+- utter_cheer_up
+- utter_did_that_help
+- utter_goodbye
+- utter_greet
+- utter_happy
+- utter_iamabot
+- utter_learn_submit_form
+- validate_learning_form
+- validate_question_form
+forms:
+  learning_form:
+    required_slots:
+    - learning_content_entity
+    - learning_method_entity
+  question_form:
+    required_slots:
+    - answer_question_entity
