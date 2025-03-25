@@ -1,4 +1,4 @@
-version: "2.0"
+version: "3.1"
 nlu:
   - lookup: grammar_content_entity
     examples: |
@@ -11,3 +11,4 @@ nlu:
       - pronouns
       - in on at
       - articles
+      - to be

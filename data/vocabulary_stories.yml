@@ -7,7 +7,41 @@ stories:
       - action: utter_greet
       - intent: init_vocabulary_learning
       - action: utter_anything_test
-  - story: interactive_story_1
+  - story: interactive_story_1_1
     steps:
       - intent: init_vocabulary_learning
+      - action: utter_anything_test
+
+  # ##########################
+  # historias mistas
+  # ##########################
+  - story: interactive_story_1_2
+    steps:
+      - intent: init_grammar_learning
+        entities:
+          - grammar_content_entity: "preposition"
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: "preposition"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_anything_test
+      - intent: init_vocabulary_learning
+      - action: utter_anything_test
+  - story: interactive_story_1_3
+    steps:
+      - intent: init_vocabulary_learning
+      - action: utter_anything_test
+      - intent: init_grammar_learning
+        entities:
+          - grammar_content_entity: "preposition"
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: "preposition"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
       - action: utter_anything_test
