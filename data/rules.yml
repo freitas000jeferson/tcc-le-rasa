@@ -10,6 +10,28 @@ rules:
     steps:
       - intent: bot_challenge
       - action: utter_iamabot
+  
+  # ###################################-
+  # PEGAR NOME DO USUARIO
+  # ###################################-
+  - rule: Activate Request name Form
+    steps:
+      - intent: init_grammar_learning
+      - action: grammar_form
+      - active_loop: grammar_form
+
+  - rule: Submit Request name Form
+    condition:
+      - active_loop: grammar_form
+    steps:
+      - action: learning_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_get_grammar
+  
+  
+  
   # ###################################-
   # APRENDIZAGEM DE GRAMATICA
   # ###################################-
@@ -27,15 +49,43 @@ rules:
       - active_loop: null
       - slot_was_set:
           - requested_slot: null
-      - action: utter_anything_test
+      - action: action_get_grammar
   # ###################################-
   # APRENDIZAGEM VOCABULARIO
   # ###################################-
   - rule: Activate Vocabulary learning Form
     steps:
       - intent: init_vocabulary_learning
-      - action: utter_anything_test
+      - action: action_get_vocabulary
 
   # ###################################-
-  #
+  # QUESTIONARIO
   # ###################################-
+  - rule: Activate Question Form
+    steps:
+    - intent: give_question
+    - action: question_form
+    - active_loop: question_form
+  
+  - rule: Submit Question Form
+    condition:
+    - active_loop: question_form
+    steps:
+    - action: question_form
+    - active_loop: null
+    - slot_was_set: 
+      - requested_slot: null
+    - action: action_questions_completed
+    - action: utter_goodbye
+
+  # - rule: Interrupt Question Form
+  #   condition:
+  #   - active_loop: question_form
+  #   steps:
+  #   - intent: answer_question
+  #     entities:
+  #     - answer_question_entity: null
+  #   - slot_was_set:
+  #     - answer_question_entity: null
+  #   - action: question_form
+  #   - active_loop: question_form

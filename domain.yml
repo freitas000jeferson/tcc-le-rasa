@@ -15,9 +15,17 @@ intents:
 - mood_unhappy
 - speak_more
 - understood
+- answer_question
+- give_question
 responses:
+  utter_ask_username:
+  - text: Hi, what is your name?
   utter_greet:
   - text: Hey! How are you?
+  - text: Hey, {username_entity}. How is your day going?
+  - text: Hi {username_entity}!
+  - text: Hello {username_entity}, how long has it been?
+  - text: Hi {username_entity}, how have you been?
   utter_cheer_up:
   - text: 'Here is something to cheer you up:'
     image: https://i.imgur.com/nGF1K8f.jpg
@@ -42,13 +50,42 @@ responses:
       - current_question_id_entity: {current_question_id_entity}
       - grammar_content_entity: {grammar_content_entity}
       - vocabulary_content_entity: {vocabulary_content_entity}
+  utter_right_answer:
+  - text: Congratulations! Correct answer
+  - text: Great! Correct answer
+  - text: Right answer! Keep it up ;)
+  utter_wrong_answer:
+  - text: Oh no! Wrong answer :(
+  - text: Incorrect answer
+  - text: Wrong answer! keep trying
+
+
+actions:
+- action_get_grammar
+- action_get_vocabulary
+- action_ask_answer_question_entity
+- action_questions_completed
+- validate_question_form
+- utter_greet
+- utter_cheer_up
+- utter_did_that_help
+- utter_happy
+- utter_goodbye
+- utter_iamabot
+- utter_ask_grammar_content_entity
+- utter_anything_test
+
 entities:
 - grammar_content_entity:
   - influence_conversation: false
 - answer_question_entity
-- count_question_entity
 - current_question_id_entity
-- vocabulary_content_entity
+- questionnarie_id_entity
+- count_question_entity
+- total_questions_entity
+- question_options_entity
+- username_entity
+
 slots:
   answer_question_entity:
     type: text
@@ -56,6 +93,27 @@ slots:
     mappings:
     - type: from_entity
       entity: answer_question_entity
+    # mappings:
+    # - type: from_text
+  question_options_entity:
+    type: list
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: question_options_entity
+  current_question_id_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: current_question_id_entity
+  questionnarie_id_entity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: questionnarie_id_entity
+
   count_question_entity:
     type: float
     initial_value: 0
@@ -63,29 +121,36 @@ slots:
     mappings:
     - type: from_entity
       entity: count_question_entity
-    max_value: 1.0
-    min_value: 0.0
-  current_question_id_entity:
-    type: text
+  total_questions_entity:
+    type: float
+    initial_value: 0
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: current_question_id_entity
+      entity: total_questions_entity
   grammar_content_entity:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: grammar_content_entity
-  vocabulary_content_entity:
+  username_entity:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: vocabulary_content_entity
+      entity: username_entity
+
+
 forms:
+  name_form:
+    required_slots:
+    - username_entity
   grammar_form:
     required_slots:
     - grammar_content_entity
-actions:
-- utter_anything_test
+  question_form:
+    required_slots:
+    - grammar_content_entity
+    - answer_question_entity
+

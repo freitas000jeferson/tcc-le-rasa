@@ -99,6 +99,7 @@ nlu:
       - understood
       - I understood
       - got it
+  # Iniciar Gramatica
   - intent: init_grammar_learning
     examples: |
       - teach me
@@ -115,15 +116,44 @@ nlu:
       - I want [plural nouns](grammar_content_entity) content, please
       - I want [modal verbs](grammar_content_entity) class
       - [pronouns](grammar_content_entity) lesson, please
-      - [in-on-at](grammar_content_entity) lesson
+      - [in on at](grammar_content_entity) lesson
       - learn [so such](grammar_content_entity)
       - teach me [preposition](grammar_content_entity)
       - teach me [articles](grammar_content_entity)
       - teach me [in on at](grammar_content_entity) lesson
+  # Iniciar Vocabulario
   - intent: init_vocabulary_learning
     examples: |
       - give me a new word
       - I want to improve my vocabulary
       - improve my vocabulary
       - learn some words
-      - new words please
+      - new words please 
+  # Iniciar questionario
+  - intent: give_question
+    examples: |
+      - give me a question
+  # Responder Questao 
+  - intent: answer_question
+    examples: |
+      - the answer is [will](answer_question_entity)
+      - the answer is [an](answer_question_entity)
+      - the correct answer is [she](answer_question_entity)
+      - the correct answer is [are](answer_question_entity)
+      - the answer is [he](answer_question_entity)
+      - the answer is [here](answer_question_entity)
+      - [is](answer_question_entity)
+      - [to](answer_question_entity)
+      - the answer is [am](answer_question_entity)
+      - [of](answer_question_entity)
+      - [on](answer_question_entity)
+      - [here](answer_question_entity)
+      - [where](answer_question_entity)
+      - [in](answer_question_entity)
+      - [off](answer_question_entity)
+      - [it](answer_question_entity)
+      - the answer is [at](answer_question_entity)
+      - [as](answer_question_entity)
+      - the answer is [there](answer_question_entity)
+      - [for](answer_question_entity)
+      - [from](answer_question_entity)

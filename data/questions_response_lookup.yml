@@ -1,0 +1,27 @@
+nlu:
+  - lookup: answer_question_entity
+    examples: |
+      - will
+      - on
+      - as
+      - an
+      - she
+      - he
+      - it
+      - are
+      - am
+      - is
+      - there
+      - here
+      - where
+      - of
+      - to
+      - with
+      - in
+      - by
+      - from
+      - for
+      - off
+      - at
+      - to
+      - by

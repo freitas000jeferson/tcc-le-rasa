@@ -8,9 +8,9 @@ Python Version    :         3.9.19
 
 pip3 install -U pip
 pip3 install rasa
- - install:
-    translate==3.6.1
-       requests==2.19.1
+# install:
+- translate==3.6.1
+- requests==2.19.1
 
 ### create project rasa
 
@@ -22,6 +22,8 @@ rasa train
 rasa train --domain ./domain/
 rasa shell
 rasa x
+### Servidor http
+rasa run --enable-api --credentials credentials.yml --cors '*'
 
 #### roda servidor de actions
 

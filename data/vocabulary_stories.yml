@@ -6,11 +6,11 @@ stories:
       - intent: greet
       - action: utter_greet
       - intent: init_vocabulary_learning
-      - action: utter_anything_test
+      - action: action_get_vocabulary
   - story: interactive_story_1_1
     steps:
       - intent: init_vocabulary_learning
-      - action: utter_anything_test
+      - action: action_get_vocabulary
 
   # ##########################
   # historias mistas
@@ -19,21 +19,21 @@ stories:
     steps:
       - intent: init_grammar_learning
         entities:
-          - grammar_content_entity: "preposition"
+          - grammar_content_entity: "some any"
       - action: grammar_form
       - active_loop: grammar_form
       - slot_was_set:
-          - grammar_content_entity: "preposition"
+          - grammar_content_entity: "some any"
       - slot_was_set:
           - requested_slot: null
       - active_loop: null
-      - action: utter_anything_test
+      - action: action_get_grammar
       - intent: init_vocabulary_learning
-      - action: utter_anything_test
+      - action: action_get_vocabulary
   - story: interactive_story_1_3
     steps:
       - intent: init_vocabulary_learning
-      - action: utter_anything_test
+      - action: action_get_vocabulary
       - intent: init_grammar_learning
         entities:
           - grammar_content_entity: "preposition"
@@ -44,4 +44,4 @@ stories:
       - slot_was_set:
           - requested_slot: null
       - active_loop: null
-      - action: utter_anything_test
+      - action: action_get_grammar
