@@ -4,14 +4,36 @@ stories:
   - story: happy path
     steps:
       - intent: greet
+      - action: username_form
+      - active_loop: username_form
+      - slot_was_set:
+        - requested_slot: username_entity
+      - slot_was_set:
+        - username_entity: Jeferson Freitas
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
       - action: utter_greet
+      - action: utter_what_do_you_want_now_p1
+
       - intent: mood_great
       - action: utter_happy
 
   - story: sad path 1
     steps:
       - intent: greet
+      - action: username_form
+      - active_loop: username_form
+      - slot_was_set:
+        - requested_slot: username_entity
+      - slot_was_set:
+        - username_entity: Jeferson
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
       - action: utter_greet
+      - action: utter_what_do_you_want_now_p1
+
       - intent: mood_unhappy
       - action: utter_cheer_up
       - action: utter_did_that_help
@@ -21,10 +43,43 @@ stories:
   - story: sad path 2
     steps:
       - intent: greet
+      - action: username_form
+      - active_loop: username_form
+      - slot_was_set:
+        - requested_slot: username_entity
+      - slot_was_set:
+        - username_entity: Jeferson Freitas
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
       - action: utter_greet
+      - action: utter_what_do_you_want_now_p1
+
       - intent: mood_unhappy
       - action: utter_cheer_up
       - action: utter_did_that_help
       - intent: deny
       - action: utter_goodbye
-
+  - story: Pegando nome do usuario
+    steps:
+    - intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson Freitas
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    
+    - intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1

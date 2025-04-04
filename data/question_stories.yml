@@ -1,0 +1,661 @@
+version: "3.1"
+
+stories:
+  - story: Questionnarie part 1
+    steps:
+      - intent: give_question
+      - action: question_form
+      - active_loop: question_form
+      - slot_was_set:
+          - requested_slot: grammar_content_entity
+      - intent: give_question
+        entities:
+          - grammar_content_entity: preposition
+          - grammar_content_entity: preposition
+      - slot_was_set:
+          - grammar_content_entity: preposition
+      - action: question_form
+      - slot_was_set:
+          - grammar_content_entity: preposition
+      - slot_was_set:
+          - requested_slot: answer_question_entity
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d8a
+      - slot_was_set:
+          - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+      - slot_was_set:
+          - question_options_entity:
+              - off
+              - with
+              - for
+      - intent: answer_question
+        entities:
+          - answer_question_entity: for
+          - answer_question_entity: for
+      - slot_was_set:
+          - answer_question_entity: for
+      - action: question_form
+      - slot_was_set:
+          - answer_question_entity: null
+      - slot_was_set:
+          - grammar_content_entity: preposition
+      - slot_was_set:
+          - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d8c
+      - slot_was_set:
+          - question_options_entity:
+              - off
+              - with
+              - for
+      - slot_was_set:
+          - requested_slot: answer_question_entity
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d8c
+      - slot_was_set:
+          - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+      - slot_was_set:
+          - question_options_entity:
+              - by
+              - with
+              - of
+      - intent: answer_question
+        entities:
+          - answer_question_entity: of
+          - answer_question_entity: of
+      - slot_was_set:
+          - answer_question_entity: of
+      - action: question_form
+      - slot_was_set:
+          - answer_question_entity: null
+      - slot_was_set:
+          - grammar_content_entity: preposition
+      - slot_was_set:
+          - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d8d
+      - slot_was_set:
+          - question_options_entity:
+              - by
+              - with
+              - of
+      - slot_was_set:
+          - requested_slot: answer_question_entity
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d8d
+      - slot_was_set:
+          - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+      - slot_was_set:
+          - question_options_entity:
+              - with
+              - in
+              - at
+      - intent: answer_question
+        entities:
+          - answer_question_entity: at
+          - answer_question_entity: at
+      - slot_was_set:
+          - answer_question_entity: at
+      - action: question_form
+      - slot_was_set:
+          - answer_question_entity: at
+      - slot_was_set:
+          - grammar_content_entity: preposition
+      - slot_was_set:
+          - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d8d
+      - slot_was_set:
+          - question_options_entity:
+              - with
+              - in
+              - at
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_questions_completed
+      - slot_was_set:
+          - answer_question_entity: null
+      - slot_was_set:
+          - grammar_content_entity: null
+      - slot_was_set:
+          - questionnarie_id_entity: null
+      - slot_was_set:
+          - current_question_id_entity: null
+      - slot_was_set:
+          - question_options_entity: null
+      - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 2
+    steps:
+      - intent: give_question
+        entities:
+          - grammar_content_entity: preposition
+          - grammar_content_entity: preposition
+      - slot_was_set:
+          - grammar_content_entity: preposition
+      - action: question_form
+      - active_loop: question_form
+      - slot_was_set:
+          - grammar_content_entity: preposition
+      - slot_was_set:
+          - requested_slot: answer_question_entity
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d83
+      - slot_was_set:
+          - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+      - slot_was_set:
+          - question_options_entity:
+              - of
+              - to
+              - with
+      - intent: answer_question
+        entities:
+          - answer_question_entity: to
+          - answer_question_entity: to
+      - slot_was_set:
+          - answer_question_entity: to
+      - action: question_form
+      - slot_was_set:
+          - answer_question_entity: null
+      - slot_was_set:
+          - grammar_content_entity: preposition
+      - slot_was_set:
+          - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d8b
+      - slot_was_set:
+          - question_options_entity:
+              - of
+              - to
+              - with
+      - slot_was_set:
+          - requested_slot: answer_question_entity
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d8b
+      - slot_was_set:
+          - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+      - slot_was_set:
+          - question_options_entity:
+              - of
+              - from
+              - with
+      - intent: answer_question
+        entities:
+          - answer_question_entity: of
+          - answer_question_entity: of
+      - slot_was_set:
+          - answer_question_entity: of
+      - action: question_form
+      - slot_was_set:
+          - answer_question_entity: null
+      - slot_was_set:
+          - grammar_content_entity: preposition
+      - slot_was_set:
+          - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d8e
+      - slot_was_set:
+          - question_options_entity:
+              - of
+              - from
+              - with
+      - slot_was_set:
+          - requested_slot: answer_question_entity
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d8e
+      - slot_was_set:
+          - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+      - slot_was_set:
+          - question_options_entity:
+              - with
+              - from
+              - to
+      - intent: answer_question
+        entities:
+          - answer_question_entity: to
+          - answer_question_entity: to
+      - slot_was_set:
+          - answer_question_entity: to
+      - action: question_form
+      - slot_was_set:
+          - answer_question_entity: to
+      - slot_was_set:
+          - grammar_content_entity: preposition
+      - slot_was_set:
+          - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+      - slot_was_set:
+          - current_question_id_entity: 675defbad53f131231833d8e
+      - slot_was_set:
+          - question_options_entity:
+              - with
+              - from
+              - to
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_questions_completed
+      - slot_was_set:
+          - answer_question_entity: null
+      - slot_was_set:
+          - grammar_content_entity: null
+      - slot_was_set:
+          - questionnarie_id_entity: null
+      - slot_was_set:
+          - current_question_id_entity: null
+      - slot_was_set:
+          - question_options_entity: null
+      - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 3 === com vocabulario
+    steps:
+    - intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+    - intent: give_question
+      entities:
+      - grammar_content_entity: preposition
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - requested_slot: answer_question_entity
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d8a
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+      - question_options_entity:
+        - off
+        - with
+        - for
+    - intent: answer_question
+      entities:
+      - answer_question_entity: is
+      - answer_question_entity: for
+      - answer_question_entity: for
+    - slot_was_set:
+      - answer_question_entity: for
+    - action: question_form
+    - slot_was_set:
+      - answer_question_entity: null
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+      - question_options_entity:
+        - off
+        - with
+        - for
+    - slot_was_set:
+      - requested_slot: answer_question_entity
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+      - question_options_entity:
+        - by
+        - with
+        - of
+    - intent: answer_question
+      entities:
+      - answer_question_entity: by
+      - answer_question_entity: by
+    - slot_was_set:
+      - answer_question_entity: by
+    - action: question_form
+    - slot_was_set:
+      - answer_question_entity: null
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+      - question_options_entity:
+        - by
+        - with
+        - of
+    - slot_was_set:
+      - requested_slot: answer_question_entity
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+      - question_options_entity:
+        - with
+        - in
+        - at
+    - intent: answer_question
+      entities:
+      - answer_question_entity: is
+      - answer_question_entity: at
+      - answer_question_entity: at
+    - slot_was_set:
+      - answer_question_entity: at
+    - action: question_form
+    - slot_was_set:
+      - answer_question_entity: at
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+      - question_options_entity:
+        - with
+        - in
+        - at
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+      - answer_question_entity: null
+    - slot_was_set:
+      - grammar_content_entity: null
+    - slot_was_set:
+      - questionnarie_id_entity: null
+    - slot_was_set:
+      - current_question_id_entity: null
+    - slot_was_set:
+      - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 4 === com gramatica
+    steps:
+    - intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+      - requested_slot: grammar_content_entity
+    - intent: grammar_response
+      entities:
+      - grammar_content_entity: preposition
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - action: grammar_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+    - intent: give_question
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - requested_slot: answer_question_entity
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d84
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - question_options_entity:
+        - with
+        - of
+        - to
+    - intent: answer_question
+      entities:
+      - answer_question_entity: to
+      - answer_question_entity: to
+    - slot_was_set:
+      - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+      - answer_question_entity: null
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+      - question_options_entity:
+        - with
+        - of
+        - to
+    - slot_was_set:
+      - requested_slot: answer_question_entity
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - question_options_entity:
+        - with
+        - for
+        - in
+    - intent: answer_question
+      entities:
+      - answer_question_entity: in
+      - answer_question_entity: in
+    - slot_was_set:
+      - answer_question_entity: in
+    - action: question_form
+    - slot_was_set:
+      - answer_question_entity: null
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+      - question_options_entity:
+        - with
+        - for
+        - in
+    - slot_was_set:
+      - requested_slot: answer_question_entity
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - question_options_entity:
+        - by
+        - with
+        - from
+    - intent: answer_question
+      entities:
+      - answer_question_entity: from
+      - answer_question_entity: from
+    - slot_was_set:
+      - answer_question_entity: from
+    - action: question_form
+    - slot_was_set:
+      - answer_question_entity: from
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+      - question_options_entity:
+        - by
+        - with
+        - from
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+      - answer_question_entity: null
+    - slot_was_set:
+      - grammar_content_entity: null
+    - slot_was_set:
+      - questionnarie_id_entity: null
+    - slot_was_set:
+      - current_question_id_entity: null
+    - slot_was_set:
+      - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+  
+  - story: Questionnarie part 5 === com gramatica 2x
+    steps:
+    - intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+      - requested_slot: grammar_content_entity
+    - intent: grammar_response
+      entities:
+      - grammar_content_entity: preposition
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - action: grammar_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+    - intent: give_question
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - requested_slot: answer_question_entity
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d84
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - question_options_entity:
+        - with
+        - of
+        - to
+    - intent: answer_question
+      entities:
+      - answer_question_entity: to
+      - answer_question_entity: to
+    - slot_was_set:
+      - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+      - answer_question_entity: null
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+      - question_options_entity:
+        - with
+        - of
+        - to
+    - slot_was_set:
+      - requested_slot: answer_question_entity
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - question_options_entity:
+        - with
+        - for
+        - in
+    - intent: answer_question
+      entities:
+      - answer_question_entity: in
+      - answer_question_entity: in
+    - slot_was_set:
+      - answer_question_entity: in
+    - action: question_form
+    - slot_was_set:
+      - answer_question_entity: null
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+      - question_options_entity:
+        - with
+        - for
+        - in
+    - slot_was_set:
+      - requested_slot: answer_question_entity
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - question_options_entity:
+        - by
+        - with
+        - from
+    - intent: answer_question
+      entities:
+      - answer_question_entity: from
+      - answer_question_entity: from
+    - slot_was_set:
+      - answer_question_entity: from
+    - action: question_form
+    - slot_was_set:
+      - answer_question_entity: from
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+      - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+      - question_options_entity:
+        - by
+        - with
+        - from
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+      - answer_question_entity: null
+    - slot_was_set:
+      - grammar_content_entity: null
+    - slot_was_set:
+      - questionnarie_id_entity: null
+    - slot_was_set:
+      - current_question_id_entity: null
+    - slot_was_set:
+      - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+    - intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+      - requested_slot: grammar_content_entity
+    - intent: grammar_response
+      entities:
+      - grammar_content_entity: preposition
+      - grammar_content_entity: preposition
+    - slot_was_set:
+      - grammar_content_entity: preposition
+    - action: grammar_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2

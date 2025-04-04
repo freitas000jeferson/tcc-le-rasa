@@ -16,21 +16,20 @@ rules:
   # ###################################-
   - rule: Activate Request name Form
     steps:
-      - intent: init_grammar_learning
-      - action: grammar_form
-      - active_loop: grammar_form
+      - intent: greet
+      - action: username_form
+      - active_loop: username_form
 
   - rule: Submit Request name Form
     condition:
-      - active_loop: grammar_form
+      - active_loop: username_form
     steps:
-      - action: learning_form
+      - action: username_form
       - active_loop: null
       - slot_was_set:
           - requested_slot: null
-      - action: action_get_grammar
-  
-  
+      - action: utter_greet
+      - action: utter_what_do_you_want_now_p1
   
   # ###################################-
   # APRENDIZAGEM DE GRAMATICA
@@ -41,15 +40,22 @@ rules:
       - action: grammar_form
       - active_loop: grammar_form
 
+  - rule: Activate Grammar learning Form pelo speak_more
+    steps:
+      - intent: speak_more
+      - action: grammar_form
+      - active_loop: grammar_form
+
   - rule: Submit Grammar learning Form
     condition:
       - active_loop: grammar_form
     steps:
-      - action: learning_form
+      - action: grammar_form
       - active_loop: null
       - slot_was_set:
           - requested_slot: null
       - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
   # ###################################-
   # APRENDIZAGEM VOCABULARIO
   # ###################################-
@@ -57,6 +63,7 @@ rules:
     steps:
       - intent: init_vocabulary_learning
       - action: action_get_vocabulary
+      - action: utter_what_do_you_want_now_p1
 
   # ###################################-
   # QUESTIONARIO
@@ -76,16 +83,21 @@ rules:
     - slot_was_set: 
       - requested_slot: null
     - action: action_questions_completed
-    - action: utter_goodbye
+    - action: utter_what_do_you_want_now_p2
 
-  # - rule: Interrupt Question Form
-  #   condition:
-  #   - active_loop: question_form
-  #   steps:
-  #   - intent: answer_question
-  #     entities:
-  #     - answer_question_entity: null
-  #   - slot_was_set:
-  #     - answer_question_entity: null
-  #   - action: question_form
-  #   - active_loop: question_form
+  - rule: unhappy path - Finalize Question Form 
+    condition:
+    # Condition that form is active.
+    - active_loop: question_form
+    steps:
+    # This unhappy path handles the case of an intent `finalize`.
+    - intent: finalize
+    - active_loop: null
+    - slot_was_set: 
+      - requested_slot: null
+    - action: utter_goodbye
+  
+  - rule: Finalize Flux Form 
+    steps:
+    - intent: finalize
+    - action: utter_goodbye

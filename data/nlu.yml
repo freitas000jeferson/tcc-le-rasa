@@ -1,159 +1,179 @@
 version: "3.1"
 nlu:
-  - intent: greet
-    examples: |
-      - hey
-      - hello
-      - hi
-      - hello there
-      - good morning
-      - good evening
-      - moin
-      - hey there
-      - let's go
-      - hey dude
-      - goodmorning
-      - goodevening
-      - good afternoon
-  - intent: goodbye
-    examples: |
-      - cu
-      - good by
-      - cee you later
-      - good night
-      - bye
-      - goodbye
-      - have a nice day
-      - see you around
-      - bye bye
-      - see you later
-  - intent: affirm
-    examples: |
-      - yes
-      - y
-      - indeed
-      - of course
-      - that sounds good
-      - correct
-  - intent: deny
-    examples: |
-      - no
-      - n
-      - never
-      - I don't think so
-      - don't like that
-      - no way
-      - not really
-  - intent: mood_great
-    examples: |
-      - perfect
-      - great
-      - amazing
-      - feeling like a king
-      - wonderful
-      - I am feeling very good
-      - I am great
-      - I am amazing
-      - I am going to save the world
-      - super stoked
-      - extremely good
-      - so so perfect
-      - so good
-      - so perfect
-  - intent: mood_unhappy
-    examples: |
-      - my day was horrible
-      - I am sad
-      - I don't feel very well
-      - I am disappointed
-      - super sad
-      - I'm so sad
-      - sad
-      - very sad
-      - unhappy
-      - not good
-      - not very good
-      - extremly sad
-      - so saad
-      - so sad
-  - intent: bot_challenge
-    examples: |
-      - are you a bot?
-      - are you a human?
-      - am I talking to a bot?
-      - am I talking to a human?
-  - intent: finalize
-    examples: |
-      - finish
-      - finalize
-      - terminate
-      - end
-      - stop
-  - intent: speak_more
-    examples: |
-      - speak more
-      - explain
-      - I didn't understand, explain more
-  - intent: understood
-    examples: |
-      - understood
-      - I understood
-      - got it
-  # Iniciar Gramatica
-  - intent: init_grammar_learning
-    examples: |
-      - teach me
-      - I want to learn
-      - give me a grammar lesson
-      - I want content
-      - I want a class
-      - learn
-      - teach me [preposition](grammar_content_entity) please
-      - teach me [much and many](grammar_content_entity)
-      - I want to learn [verb](grammar_content_entity)
-      - give me a [some any](grammar_content_entity) lesson
-      - give me a [so such](grammar_content_entity) lesson, please
-      - I want [plural nouns](grammar_content_entity) content, please
-      - I want [modal verbs](grammar_content_entity) class
-      - [pronouns](grammar_content_entity) lesson, please
-      - [in on at](grammar_content_entity) lesson
-      - learn [so such](grammar_content_entity)
-      - teach me [preposition](grammar_content_entity)
-      - teach me [articles](grammar_content_entity)
-      - teach me [in on at](grammar_content_entity) lesson
-  # Iniciar Vocabulario
-  - intent: init_vocabulary_learning
-    examples: |
-      - give me a new word
-      - I want to improve my vocabulary
-      - improve my vocabulary
-      - learn some words
-      - new words please 
-  # Iniciar questionario
-  - intent: give_question
-    examples: |
-      - give me a question
-  # Responder Questao 
-  - intent: answer_question
-    examples: |
-      - the answer is [will](answer_question_entity)
-      - the answer is [an](answer_question_entity)
-      - the correct answer is [she](answer_question_entity)
-      - the correct answer is [are](answer_question_entity)
-      - the answer is [he](answer_question_entity)
-      - the answer is [here](answer_question_entity)
-      - [is](answer_question_entity)
-      - [to](answer_question_entity)
-      - the answer is [am](answer_question_entity)
-      - [of](answer_question_entity)
-      - [on](answer_question_entity)
-      - [here](answer_question_entity)
-      - [where](answer_question_entity)
-      - [in](answer_question_entity)
-      - [off](answer_question_entity)
-      - [it](answer_question_entity)
-      - the answer is [at](answer_question_entity)
-      - [as](answer_question_entity)
-      - the answer is [there](answer_question_entity)
-      - [for](answer_question_entity)
-      - [from](answer_question_entity)
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - hello guy
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: finalize
+  examples: |
+    - finish
+    - finalize
+    - terminate
+    - end
+    - stop
+- intent: speak_more
+  examples: |
+    - speak more
+    - explain
+    - I didn't understand, explain more
+- intent: understood
+  examples: |
+    - understood
+    - I understood
+    - got it
+- intent: init_grammar_learning
+  examples: |
+    - teach me
+    - I want to learn
+    - give me a grammar lesson
+    - I want content
+    - I want a class
+    - learn
+    - teach me [preposition](grammar_content_entity) please
+    - teach me [much and many](grammar_content_entity)
+    - I want to learn [verb](grammar_content_entity)
+    - give me a [some any](grammar_content_entity) lesson
+    - give me a [so such](grammar_content_entity) lesson, please
+    - I want [plural nouns](grammar_content_entity) content, please
+    - I want [modal verbs](grammar_content_entity) class
+    - [pronouns](grammar_content_entity) lesson, please
+    - [in on at](grammar_content_entity) lesson
+    - learn [so such](grammar_content_entity)
+    - teach me [preposition](grammar_content_entity)
+    - teach me [articles](grammar_content_entity)
+    - teach me [to be](grammar_content_entity) lesson
+- intent: grammar_response
+  examples: |
+    - [in on at](grammar_content_entity)
+    - [preposition](grammar_content_entity)
+    - [to be](grammar_content_entity)
+    - [articles](grammar_content_entity)
+    - [preposition][{"entity": "grammar_content_entity"}, {"entity": "grammar_content_entity"}]
+- intent: init_vocabulary_learning
+  examples: |
+    - give me a new word
+    - I want to improve my vocabulary
+    - improve my vocabulary
+    - learn some words
+    - new words please
+- intent: give_question
+  examples: |
+    - give me a question
+    - give me a [preposition](grammar_content_entity) question
+    - I want a [preposition](grammar_content_entity) question
+    - give me a [preposition][{"entity": "grammar_content_entity"}, {"entity": "grammar_content_entity"}] question
+    - give me a [preposition][{"entity": "grammar_content_entity"}, {"entity": "grammar_content_entity"}] question
+- intent: answer_question
+  examples: |
+    - the answer is [will](answer_question_entity)
+    - the answer is [an](answer_question_entity)
+    - the correct answer is [she](answer_question_entity)
+    - the correct answer is [are](answer_question_entity)
+    - the answer is [he](answer_question_entity)
+    - the answer is [here](answer_question_entity)
+    - [is](answer_question_entity)
+    - [to](answer_question_entity)
+    - the answer is [am](answer_question_entity)
+    - [of](answer_question_entity)
+    - [on](answer_question_entity)
+    - [here](answer_question_entity)
+    - [where](answer_question_entity)
+    - [in](answer_question_entity)
+    - [off](answer_question_entity)
+    - [it](answer_question_entity)
+    - the answer is [at](answer_question_entity)
+    - [as](answer_question_entity)
+    - the answer is [there](answer_question_entity)
+    - [for](answer_question_entity)
+    - [from](answer_question_entity)
+    - [with](answer_question_entity)
+    - the answer is [from](answer_question_entity)
+    - [for][{"entity": "answer_question_entity"}, {"entity": "answer_question_entity"}]
+    - [of][{"entity": "answer_question_entity"}, {"entity": "answer_question_entity"}]
+    - [at][{"entity": "answer_question_entity"}, {"entity": "answer_question_entity"}]
+    - [to][{"entity": "answer_question_entity"}, {"entity": "answer_question_entity"}]
+    - [in][{"entity": "answer_question_entity"}, {"entity": "answer_question_entity"}]
+    - [from][{"entity": "answer_question_entity"}, {"entity": "answer_question_entity"}]
+    - [by](answer_question_entity)
+    - the answer is [for][{"entity": "answer_question_entity"}, {"entity": "answer_question_entity"}]
+    - [by][{"entity": "answer_question_entity"}, {"entity": "answer_question_entity"}]
+    - the answer is [at][{"entity": "answer_question_entity"}, {"entity": "answer_question_entity"}]

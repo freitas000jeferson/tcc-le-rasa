@@ -9,10 +9,12 @@
 
 from typing import Any, Text, Dict, List
 
-from rasa_sdk import Action, Tracker
+from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import AllSlotsReset
 from rasa_sdk.events import SlotSet
+from rasa_sdk.events import EventType
+from rasa_sdk.types import DomainDict
 
 # from translate import Translator
 import requests
@@ -26,24 +28,37 @@ QUESTIONNARIE_ID_ENTITY= 'questionnarie_id_entity'
 CURRENT_QUESTION_ID_ENTITY = 'current_question_id_entity'
 QUESTION_OPTIONS_ENTITY = 'question_options_entity'
 
+USERNAME_ENTITY = 'username_entity'
 COUNT_QUESTION_ENTITY = 'count_question_entity'
 TOTAL_QUESTIONS_ENTITY = 'total_questions_entity'
 
 GRAMMAR_CONTENT_ENTITY = 'grammar_content_entity'
 VOCABULARY_CONTENT_ENTITY ="vocabulary_content_entity"
 
-class ActionHelloWorld(Action):
+REQUESTED_SLOT = "requested_slot"
+
+class ActionAskUsernameEntity(Action):
 
     def name(self) -> Text:
-        return "action_hello_world"
+        return "action_ask_username_entity"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        sender = tracker.sender_id
+        username = tracker.get_slot(USERNAME_ENTITY)
+        requested_slot = USERNAME_ENTITY
+        if not username:
+            response = httpGetProfile(sender)
+            if 'data' in response:
+                username = response["data"]['username']
+                requested_slot= None
+                # dispatcher.utter_message(response="utter_greet", username_entity=username)
+            else:
+                dispatcher.utter_message(response="utter_ask_username")
+        
+        return [SlotSet(USERNAME_ENTITY, username), SlotSet(REQUESTED_SLOT, requested_slot)]
 
-        dispatcher.utter_message(text="Hello World!")
-
-        return []
 
 # ##############################
 # Action Gramatica
@@ -116,15 +131,15 @@ class ActionAskAnswerQuestionEntity(Action):
     def name(self) -> Text:
         return "action_ask_answer_question_entity"
 
-    def run(
-        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
-    ) -> List[EventType]:
-        print("## Buscar questionario")
+    def run(self, dispatcher: CollectingDispatcher, 
+            tracker: Tracker, 
+            domain: Dict) -> List[Dict[Text, Any]]:
+        print("# Buscar questionario")
         sender = tracker.sender_id
         category = tracker.get_slot(GRAMMAR_CONTENT_ENTITY)
         currentQuestionId = tracker.get_slot(CURRENT_QUESTION_ID_ENTITY)
         questionnarieId = tracker.get_slot(QUESTIONNARIE_ID_ENTITY)
-        
+
         text_resp = None
         buttons_resp = None
         image_resp = None
@@ -136,15 +151,29 @@ class ActionAskAnswerQuestionEntity(Action):
             dispatcher.utter_message(response="utter_ask_grammar_content_entity")
         #---------------------
 
-        if current_question_id_entity != None or questionnarieId != None:
+        if not currentQuestionId and not questionnarieId:
             # cria um novo questionario
+            print("## Gerar questionario")
             response = httpGenerateQuiz(category, sender)
             
             questionnarieId = response["id"]
             currentQuestionId = response["question"]["id"]
         else:
             # busca a pergunta do questionario atual
-            response = httpGetCurrentQuestion(questionnarieId, currentQuestionId)
+            if not questionnarieId:
+                response = httpGetCurrentQuestion(sender, None)
+            else:
+                response = httpGetCurrentQuestion(questionnarieId, currentQuestionId)
+            print("## Buscar pergunta atual")
+            # questionnarieId = response["id"]
+            currentQuestionId = response["question"]["id"]
+        
+        if response["status"]== 'DONE':
+            # Se o questionario ja foi finalizado
+            return [
+                SlotSet(REQUESTED_SLOT, None)
+            ]
+        print("Monta resposta")
 
         if response["question"]["image"]:
             image_resp = response["question"]["image"]
@@ -186,7 +215,10 @@ class ValidateQuestionForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate `grammar` value."""
-        return {}
+        category = slot_value
+        return {
+            GRAMMAR_CONTENT_ENTITY: category
+        }
 
     def validate_answer_question_entity(
         self,
@@ -207,7 +239,13 @@ class ValidateQuestionForm(FormValidationAction):
         # verifica se a resposta existe entre as opçoes
         if options and answer.lower() not in options:
             dispatcher.utter_message(text=f"The answer is one of the alternatives!")
-            return { ANSWER_QUESTION_ENTITY: None }
+            return { 
+                ANSWER_QUESTION_ENTITY: None,
+                GRAMMAR_CONTENT_ENTITY: category,
+                QUESTIONNARIE_ID_ENTITY: questionnarieId,
+                CURRENT_QUESTION_ID_ENTITY: currentQuestionId,
+                QUESTION_OPTIONS_ENTITY: options
+            }
         
         # responde pergunta
         response = httpAnswerQuestion(questionnarieId, currentQuestionId, answer, None)
@@ -216,7 +254,7 @@ class ValidateQuestionForm(FormValidationAction):
         text_resp = None
 
         if response["lastQuestionStatus"]:
-            if response["lastQuestionStatus"]==="RIGHT":
+            if response["lastQuestionStatus"] == "RIGTH":
                 response_resp="utter_right_answer"
             else:
                 response_resp="utter_wrong_answer"
@@ -225,15 +263,10 @@ class ValidateQuestionForm(FormValidationAction):
 
         # analiza se ja finalizou o questionario para continuar
         #  com o RULE(answer!=None) e mostrar o resultado
-        if response["status"] === "DONE":
-            options=None
-            currentQuestionId=None
-            category=None
-            # Nao precisa atualizar o answer
-        else:
+        # Se for response["status"] == DONE o quiz ta completo e permanece a resposta
+        if response["status"] != "DONE":
             answer = None
             currentQuestionId = response["question"]["id"]
-            # nao precisa atualizar options, questionnarieId, category
             
         return {
             ANSWER_QUESTION_ENTITY: answer,
@@ -252,13 +285,21 @@ class ActionQuestionaryCompleted(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print("## Dar resultado do quiz")
         # user = "65f84c676f6d5a4ed8c1dc92"
         sender = tracker.sender_id
         questionnarieId = tracker.get_slot(QUESTIONNARIE_ID_ENTITY)
 
         response = httpGetCurrentQuestion(questionnarieId, None)
+        totalCorrectAnswers = response["totalCorrectAnswers"]
+        totalQuestions = response["totalQuestions"]
+        text_resp = ""
+        if totalCorrectAnswers>= totalQuestions/2:
+            text_resp="Congratulations!"
+        else:
+            text_resp="Keep trying!"
 
-        text_resp = f'Congratulations, you answered {response["totalCorrectAnswers"]}/{response["totalQuestions"]} questions correctly'
+        text_resp += f'You answered {totalCorrectAnswers}/{totalQuestions} questions correctly'
         dispatcher.utter_message(text=text_resp)
         
         return [
@@ -277,17 +318,15 @@ BASE_URL = "http://192.168.3.4:3000/api/v1"
 BASIC_AUTH = ("chatbotrasa","minhasenha1234")
 
 def httpGetContent(typeContent, category, userId):
-    url = BASE_URL+"/learn/"+ typeContent+'?'
-    if category:
-        url+="category="+ category +'&'
-    if userId
-        url+= "userId=" + userId
+    userId = "65f84c676f6d5a4ed8c1dc92"
+    url = BASE_URL+"/learn/"+ typeContent+"?category="+ category +"&userId=" + userId
     print(f"REQUEST: {url}")
     request = requests.get(url, auth = BASIC_AUTH)
     return request.json()
 
-
 def httpGenerateQuiz(category, userId):
+    # TODO: para testes modo interativo
+    # userId = "65f84c676f6d5a4ed8c1dc92"
     url = BASE_URL+"/learn/questions"
     print(f"REQUEST: {url}")
 
@@ -315,4 +354,12 @@ def httpAnswerQuestion(questionnarieId, questionId, answer, answerId):
         "answerId": answerId
     }
     request = requests.post(url, data=payload, auth = BASIC_AUTH)
+    return request.json()
+
+def httpGetProfile(userId):
+    # TODO: para testes modo interativo
+    # userId = "65f84c676f6d5a4ed8c1dc92"
+    url = BASE_URL+'/users/'+userId+'/profile'
+    print(f"REQUEST: {url}")
+    request = requests.get(url,auth = BASIC_AUTH)
     return request.json()

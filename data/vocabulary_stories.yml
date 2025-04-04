@@ -4,13 +4,27 @@ stories:
   - story: vocabulary === Bem vindo === NÃO informando valor para grammar_content_entity
     steps:
       - intent: greet
+      - action: username_form
+      - active_loop: username_form
+      - slot_was_set:
+        - requested_slot: username_entity
+      - slot_was_set:
+        - username_entity: Amanda
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
       - action: utter_greet
+      - action: utter_what_do_you_want_now_p1
+      
       - intent: init_vocabulary_learning
       - action: action_get_vocabulary
+      - action: utter_what_do_you_want_now_p1
+
   - story: interactive_story_1_1
     steps:
       - intent: init_vocabulary_learning
       - action: action_get_vocabulary
+      - action: utter_what_do_you_want_now_p1
 
   # ##########################
   # historias mistas
@@ -28,12 +42,18 @@ stories:
           - requested_slot: null
       - active_loop: null
       - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+
       - intent: init_vocabulary_learning
       - action: action_get_vocabulary
+      - action: utter_what_do_you_want_now_p1
+
   - story: interactive_story_1_3
     steps:
       - intent: init_vocabulary_learning
       - action: action_get_vocabulary
+      - action: utter_what_do_you_want_now_p1
+
       - intent: init_grammar_learning
         entities:
           - grammar_content_entity: "preposition"
@@ -45,3 +65,70 @@ stories:
           - requested_slot: null
       - active_loop: null
       - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_1_3
+    steps:
+      - intent: init_vocabulary_learning
+      - action: action_get_vocabulary
+      - action: utter_what_do_you_want_now_p1
+
+      - intent: init_grammar_learning
+        entities:
+          - grammar_content_entity: "verb"
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: "verb"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+
+      - intent: speak_more
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: verb
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+  
+  - story: interactive_story_1_4
+    steps:
+      - intent: init_vocabulary_learning
+      - action: action_get_vocabulary
+      - action: utter_what_do_you_want_now_p1
+
+      - intent: init_grammar_learning
+        entities:
+          - grammar_content_entity: "verb"
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: "verb"
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+
+      - intent: speak_more
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: verb
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+
+      - intent: finalize
+      - action: utter_goodbye
+      
+      
+

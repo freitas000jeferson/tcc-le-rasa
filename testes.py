@@ -1,9 +1,9 @@
 print("INIT")
-# import requests
-# import json
-# import asyncio
-# BASE_URL = "http://192.168.3.4:3000/api/v1"
-# BASIC_AUTH = ("chatbotrasa","minhasenha1234")
+import requests
+import json
+import asyncio
+BASE_URL = "http://192.168.3.4:3000/api/v1"
+BASIC_AUTH = ("chatbotrasa","minhasenha1234")
 # def httpGetContent(typeContent, category, userId):
 #     url = BASE_URL+'/learn/'+ typeContent +"?category="+ category + "&userId="+userId 
 #     request = requests.get(url, auth = BASIC_AUTH)
@@ -70,5 +70,13 @@ if response["question"]["options"]:
             "payload": payload, 
             "title": item["text"]
         })
-    
-print(buttons_resp)
+
+def httpGetProfile(id):
+    url = BASE_URL+'/users/'+id+'/profile'
+    request = requests.get(url,auth = BASIC_AUTH)
+    return request.json()
+response = httpGetProfile("65f84c676f6d5a4ed8c1dc9")
+print (response)
+if 'data' in response:
+    print(response["data"])
+else: print(" error")

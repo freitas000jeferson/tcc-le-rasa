@@ -20,6 +20,7 @@ stories:
           - requested_slot: null
       - active_loop: null
       - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
 
   - story: grammar === NÃO informando valor para grammar_content_entity
     steps:
@@ -34,11 +35,23 @@ stories:
           - requested_slot: null
       - active_loop: null
       - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
 
   - story: grammar === Bem vindo === informando valor para grammar_content_entity
     steps:
       - intent: greet
+      - action: username_form
+      - active_loop: username_form
+      - slot_was_set:
+        - requested_slot: username_entity
+      - slot_was_set:
+        - username_entity: Jeferson
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
       - action: utter_greet
+      - action: utter_what_do_you_want_now_p1
+      
       - intent: init_grammar_learning
         entities:
           - grammar_content_entity: "verb"
@@ -52,11 +65,24 @@ stories:
           - requested_slot: null
       - active_loop: null
       - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+       
 
   - story: grammar === Bem vindo === NÃO informando valor para grammar_content_entity
     steps:
       - intent: greet
+      - action: username_form
+      - active_loop: username_form
+      - slot_was_set:
+        - requested_slot: username_entity
+      - slot_was_set:
+        - username_entity: Augusto Costa
+      - slot_was_set:
+        - requested_slot: null
+      - active_loop: null
       - action: utter_greet
+      - action: utter_what_do_you_want_now_p1
+
       - intent: init_grammar_learning
       - action: grammar_form
       - active_loop: grammar_form
@@ -68,6 +94,7 @@ stories:
           - requested_slot: null
       - active_loop: null
       - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
 
   - story: interactive_story_1
     steps:
@@ -84,6 +111,7 @@ stories:
           - requested_slot: null
       - active_loop: null
       - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
 
   - story: interactive_story_2
     steps:
@@ -102,6 +130,7 @@ stories:
           - requested_slot: null
       - active_loop: null
       - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
 
   - story: interactive_story_3
     steps:
@@ -116,3 +145,74 @@ stories:
           - requested_slot: null
       - active_loop: null
       - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+  
+  - story: grammar === informando valor para grammar_content_entity === speak_more
+    steps:
+     
+      - intent: init_grammar_learning
+        entities:
+          - grammar_content_entity: "verb"
+      - slot_was_set:
+          - grammar_content_entity: "verb"
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: verb
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+
+      - intent: speak_more
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: verb
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+      
+  - story: grammar === informando valor para grammar_content_entity === speak_more 2x
+    steps:
+     
+      - intent: init_grammar_learning
+        entities:
+          - grammar_content_entity: "verb"
+      - slot_was_set:
+          - grammar_content_entity: "verb"
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: verb
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+
+      - intent: speak_more
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: verb
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+
+      - intent: speak_more
+      - action: grammar_form
+      - active_loop: grammar_form
+      - slot_was_set:
+          - grammar_content_entity: verb
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_get_grammar
+      - action: utter_what_do_you_want_now_p2
+      
