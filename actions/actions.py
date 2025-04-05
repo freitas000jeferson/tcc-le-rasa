@@ -82,14 +82,29 @@ class ActionGetGrammar(Action):
         response = httpGetContent("GRAMMAR", category, sender )
         
         text_resp=""
+        examples_resp=""
+        json_resp = {'text': [], 'images': [], 'examples': []}
+
         for item in response:
-            text_resp += "\n".join(item["text"])+"\n".join(item["examples"]) +"\n"
-        
+            if item["text"]:
+                json_resp["text"] += item["text"]
+                text_resp += "\n\n".join(item["text"])+"\n\n"
+
+            if item["examples"]:
+                json_resp["examples"] += item["examples"]
+                examples_resp+="\n\n".join(item["examples"])+"\n\n"
+                
+            if item["images"]:
+                json_resp["images"] += item["images"]
+
+        if examples_resp:
+            text_resp+="\n\n"+examples_resp
+
         image_resp = None
         if len(response[0]["images"]) >0:
             image_resp = response[0]["images"][0]
 
-        dispatcher.utter_message(text=text_resp, image=image_resp, json_message= response)
+        dispatcher.utter_message(text=text_resp, image=image_resp, json_message=json_resp)
         return []
 
 # ##############################
@@ -113,14 +128,29 @@ class ActionGetVocabulary(Action):
         response = httpGetContent("VOCABULARY", "None", sender )
         
         text_resp=""
+        examples_resp=""
+        json_resp = {'text': [], 'images': [], 'examples': []}
+
         for item in response:
-            text_resp += "\n".join(item["text"])+"\n".join(item["examples"]) +"\n"
+            if item["text"]:
+                json_resp["text"] += item["text"]
+                text_resp += "\n\n".join(item["text"])+"\n\n"
+
+            if item["examples"]:
+                json_resp["examples"] += item["examples"]
+                examples_resp+="\n\n".join(item["examples"])+"\n\n"
+                
+            if item["images"]:
+                json_resp["images"] += item["images"]
         
+        if examples_resp:
+            text_resp+="\n\n"+examples_resp
+
         image_resp = None
         if len(response[0]["images"]) >0:
             image_resp = response[0]["images"][0]
 
-        dispatcher.utter_message(text=text_resp, image=image_resp, json_message= response)
+        dispatcher.utter_message(text=text_resp, image=image_resp, json_message=json_resp)
         return []
 
 # ##############################
