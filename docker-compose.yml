@@ -15,7 +15,7 @@ services:
      - ./models:/app/models
     command:
       - run
-      - --enable_api
+      - --enable-api
       - --cors
       - "*"
       - --debug
@@ -24,10 +24,11 @@ services:
     depends_on:
       - action_server
   action_server:
-    image: rasa/rasa-sdk:3.6.2
+    build:
+        context: ./actions
     container_name: rasa_actions
     ports:
       - "5055:5055"
     volumes:
      - ./actions:/app/actions
-    command: ["start", "--actions", "actions"]
+    # command: ["start", "--actions", "actions"]
