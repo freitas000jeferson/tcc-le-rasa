@@ -47,3 +47,7 @@ docker run -it -p 8080:8080 freitas001jeferson/rasa-demo
 docker run -it --rm --user 1000 -v ${PWD}:/app rasa/rasa:3.0.8-full init --no-prompt
 docker run --user 1000 -it -p 5005:5005 -v ${PWD}:/app rasa/rasa:3.0.8-full run --enable-api --cors "*"
 docker-compose up
+
+
+- rodar testes no docker
+docker run --rm -v ${PWD}:/app rasa/rasa:3.6.20 test

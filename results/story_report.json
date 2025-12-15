@@ -1,0 +1,207 @@
+{
+  "finalize": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 9
+  },
+  "grammar_response": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 13
+  },
+  "goodbye": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5
+  },
+  "utter_what_do_you_want_now_p2": {
+    "precision": 1.0,
+    "recall": 0.961038961038961,
+    "f1-score": 0.9801324503311257,
+    "support": 77
+  },
+  "utter_did_that_help": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 9
+  },
+  "utter_cheer_up": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 9
+  },
+  "utter_goodbye": {
+    "precision": 1.0,
+    "recall": 0.7368421052631579,
+    "f1-score": 0.8484848484848484,
+    "support": 19
+  },
+  "deny": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5
+  },
+  "action_listen": {
+    "precision": 0.9866666666666667,
+    "recall": 0.8377358490566038,
+    "f1-score": 0.9061224489795919,
+    "support": 265
+  },
+  "mood_great": {
+    "precision": 0.625,
+    "recall": 1.0,
+    "f1-score": 0.7692307692307693,
+    "support": 5
+  },
+  "give_question": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 20
+  },
+  "bot_challenge": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "utter_happy": {
+    "precision": 1.0,
+    "recall": 0.3333333333333333,
+    "f1-score": 0.5,
+    "support": 9
+  },
+  "init_vocabulary_learning": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 21
+  },
+  "username_form": {
+    "precision": 0.84375,
+    "recall": 0.9642857142857143,
+    "f1-score": 0.8999999999999999,
+    "support": 28
+  },
+  "affirm": {
+    "precision": 1.0,
+    "recall": 0.16,
+    "f1-score": 0.2758620689655173,
+    "support": 25
+  },
+  "answer_question": {
+    "precision": 0.8235294117647058,
+    "recall": 1.0,
+    "f1-score": 0.9032258064516129,
+    "support": 42
+  },
+  "utter_iamabot": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "mood_unhappy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 9
+  },
+  "greet": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 32
+  },
+  "question_form": {
+    "precision": 1.0,
+    "recall": 0.9841269841269841,
+    "f1-score": 0.9919999999999999,
+    "support": 63
+  },
+  "utter_what_do_you_want_now_p1": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 46
+  },
+  "action_get_grammar": {
+    "precision": 1.0,
+    "recall": 0.9032258064516129,
+    "f1-score": 0.9491525423728813,
+    "support": 62
+  },
+  "init_grammar_learning": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 52
+  },
+  "utter_greet": {
+    "precision": 1.0,
+    "recall": 0.13333333333333333,
+    "f1-score": 0.23529411764705882,
+    "support": 30
+  },
+  "action_get_vocabulary": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 21
+  },
+  "action_questions_completed": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 15
+  },
+  "None": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 243
+  },
+  "grammar_form": {
+    "precision": 0.927710843373494,
+    "recall": 0.9871794871794872,
+    "f1-score": 0.9565217391304347,
+    "support": 78
+  },
+  "speak_more": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 18
+  },
+  "micro avg": {
+    "precision": 0.9707207207207207,
+    "recall": 0.6974110032362459,
+    "f1-score": 0.8116760828625236,
+    "support": 1236
+  },
+  "macro avg": {
+    "precision": 0.873555230726829,
+    "recall": 0.8000367191356397,
+    "f1-score": 0.8072008930531279,
+    "support": 1236
+  },
+  "weighted avg": {
+    "precision": 0.7703611227701591,
+    "recall": 0.6974110032362459,
+    "f1-score": 0.7161027718659096,
+    "support": 1236
+  },
+  "accuracy": 0.6974110032362459,
+  "conversation_accuracy": {
+    "accuracy": 0.21153846153846154,
+    "correct": 22,
+    "with_warnings": 0,
+    "total": 104
+  }
+}

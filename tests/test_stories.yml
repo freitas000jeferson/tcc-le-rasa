@@ -2,90 +2,3817 @@
 #### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
 
 stories:
-- story: happy path 1
-  steps:
-  - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
-  - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
+  - story: happy path test 1
+    steps:
+    - user: |
+        hello
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson Freitas
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson Freitas
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        amazing
+      intent: mood_great
+    - action: utter_happy
 
-- story: happy path 2
-  steps:
-  - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
-  - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
-  - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
+  - story: happy path test 2
+    steps:
+    - user: |
+        hi there
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson Freitas
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson Freitas
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        perfect
+      intent: mood_great
+    - action: utter_happy
 
-- story: sad path 1
-  steps:
-  - user: |
-      hello
-    intent: greet
-  - action: utter_greet
-  - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      yes
-    intent: affirm
-  - action: utter_happy
+  - story: happy path test 3
+    steps:
+    - user: |
+        good morning
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson Freitas
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson Freitas
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        wonderful
+      intent: mood_great
+    - action: utter_happy
 
-- story: sad path 2
-  steps:
-  - user: |
-      hello
-    intent: greet
-  - action: utter_greet
-  - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      not really
-    intent: deny
-  - action: utter_goodbye
+  - story: sad path 1 test 1
+    steps:
+    - user: |
+        hello
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        not good
+      intent: mood_unhappy
+    - action: utter_cheer_up
+    - action: utter_did_that_help
+    - user: |
+        yes
+      intent: affirm
+    - action: utter_happy
 
-- story: sad path 3
-  steps:
-  - user: |
-      hi
-    intent: greet
-  - action: utter_greet
-  - user: |
-      very terrible
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      no
-    intent: deny
-  - action: utter_goodbye
+  - story: sad path 1 test 2
+    steps:
+    - user: |
+        hi
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        sad
+      intent: mood_unhappy
+    - action: utter_cheer_up
+    - action: utter_did_that_help
+    - user: |
+        indeed
+      intent: affirm
+    - action: utter_happy
 
-- story: say goodbye
-  steps:
-  - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
+  - story: sad path 1 test 3
+    steps:
+    - user: |
+        hey
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        unhappy
+      intent: mood_unhappy
+    - action: utter_cheer_up
+    - action: utter_did_that_help
+    - user: |
+        correct
+      intent: affirm
+    - action: utter_happy
 
-- story: bot challenge
-  steps:
-  - user: |
-      are you a bot?
-    intent: bot_challenge
-  - action: utter_iamabot
+  - story: sad path 2 test 1
+    steps:
+    - user: |
+        hello
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson Freitas
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson Freitas
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        not good
+      intent: mood_unhappy
+    - action: utter_cheer_up
+    - action: utter_did_that_help
+    - user: |
+        no
+      intent: deny
+    - action: utter_goodbye
+
+  - story: sad path 2 test 2
+    steps:
+    - user: |
+        hi
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson Freitas
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson Freitas
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        sad
+      intent: mood_unhappy
+    - action: utter_cheer_up
+    - action: utter_did_that_help
+    - user: |
+        never
+      intent: deny
+    - action: utter_goodbye
+
+  - story: sad path 2 test 3
+    steps:
+    - user: |
+        hey
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson Freitas
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson Freitas
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        unhappy
+      intent: mood_unhappy
+    - action: utter_cheer_up
+    - action: utter_did_that_help
+    - user: |
+        not really
+      intent: deny
+    - action: utter_goodbye
+
+  - story: Pegando nome do usuario test 1
+    steps:
+    - user: |
+        hello
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson Freitas
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson Freitas
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        hello again
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+
+  - story: Pegando nome do usuario test 2
+    steps:
+    - user: |
+        hi
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson Freitas
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson Freitas
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        hey there
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+
+  - story: Pegando nome do usuario test 3
+    steps:
+    - user: |
+        good morning
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson Freitas
+      intent: affirm
+    - slot_was_set:
+      - requested_slot: username_entity
+    - slot_was_set:
+      - username_entity: Jeferson Freitas
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        let's go
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+
+  # ###################################-
+  # APRENDIZAGEM VOCABULARIO
+  # ###################################-
+
+  - story: vocabulary === Bem vindo === NÃO informando valor para grammar_content_entity test 1
+    steps:
+    - user: |
+        hello
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Amanda
+      intent: affirm
+    - slot_was_set:
+        - requested_slot: username_entity
+    - slot_was_set:
+        - username_entity: Amanda
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        give me a new word
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: vocabulary === Bem vindo === NÃO informando valor para grammar_content_entity test 2
+    steps:
+    - user: |
+        hi
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Amanda
+      intent: affirm
+    - slot_was_set:
+        - requested_slot: username_entity
+    - slot_was_set:
+        - username_entity: Amanda
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        I want to improve my vocabulary
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: vocabulary === Bem vindo === NÃO informando valor para grammar_content_entity test 3
+    steps:
+    - user: |
+        good morning
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Amanda
+      intent: affirm
+    - slot_was_set:
+        - requested_slot: username_entity
+    - slot_was_set:
+        - username_entity: Amanda
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        learn some words
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: interactive_story_1_1 test 1
+    steps:
+    - user: |
+        give me a new word
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: interactive_story_1_1 test 2
+    steps:
+    - user: |
+        I want to improve my vocabulary
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: interactive_story_1_1 test 3
+    steps:
+    - user: |
+        learn some words
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: interactive_story_1_2 test 1
+    steps:
+    - user: |
+        teach me some any please
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: some any
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: some any
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        give me a new word
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: interactive_story_1_2 test 2
+    steps:
+    - user: |
+        I want to learn some any
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: some any
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: some any
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        I want to improve my vocabulary
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: interactive_story_1_2 test 3
+    steps:
+    - user: |
+        give me a grammar lesson about some any
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: some any
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: some any
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        learn some words
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: interactive_story_1_3 test 1
+    steps:
+    - user: |
+        give me a new word
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        teach me preposition please
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_1_3 test 2
+    steps:
+    - user: |
+        I want to improve my vocabulary
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        I want to learn preposition
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_1_3 test 3
+    steps:
+    - user: |
+        learn some words
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        give me a grammar lesson about preposition
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_1_3 (second) test 1
+    steps:
+    - user: |
+        give me a new word
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        teach me verb please
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        speak more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_1_3 (second) test 2
+    steps:
+    - user: |
+        I want to improve my vocabulary
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        I want to learn verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        explain
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_1_3 (second) test 3
+    steps:
+    - user: |
+        learn some words
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        give me a grammar lesson about verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        I didn't understand, explain more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_1_4 test 1
+    steps:
+    - user: |
+        give me a new word
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        teach me verb please
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        speak more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        finish
+      intent: finalize
+    - action: utter_goodbye
+
+  - story: interactive_story_1_4 test 2
+    steps:
+    - user: |
+        I want to improve my vocabulary
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        I want to learn verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        explain
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        finalize
+      intent: finalize
+    - action: utter_goodbye
+
+  - story: interactive_story_1_4 test 3
+    steps:
+    - user: |
+        learn some words
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        give me a grammar lesson about verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        I didn't understand, explain more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        terminate
+      intent: finalize
+    - action: utter_goodbye
+  
+  # ###################################-
+  # QUESTIONARIO
+  # ###################################-
+
+  - story: grammar === informando valor para grammar_content_entity test 1
+    steps:
+    - user: |
+        teach me verb please
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === informando valor para grammar_content_entity test 2
+    steps:
+    - user: |
+        I want to learn verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === informando valor para grammar_content_entity test 3
+    steps:
+    - user: |
+        give me a grammar lesson about verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === NÃO informando valor para grammar_content_entity test 1
+    steps:
+    - user: |
+        teach me
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === NÃO informando valor para grammar_content_entity test 2
+    steps:
+    - user: |
+        I want to learn
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === NÃO informando valor para grammar_content_entity test 3
+    steps:
+    - user: |
+        give me a grammar lesson
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === Bem vindo === informando valor para grammar_content_entity test 1
+    steps:
+    - user: |
+        hello
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson
+      intent: affirm
+    - slot_was_set:
+        - requested_slot: username_entity
+    - slot_was_set:
+        - username_entity: Jeferson
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        teach me verb please
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === Bem vindo === informando valor para grammar_content_entity test 2
+    steps:
+    - user: |
+        hi
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson
+      intent: affirm
+    - slot_was_set:
+        - requested_slot: username_entity
+    - slot_was_set:
+        - username_entity: Jeferson
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        I want to learn verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === Bem vindo === informando valor para grammar_content_entity test 3
+    steps:
+    - user: |
+        good morning
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Jeferson
+      intent: affirm
+    - slot_was_set:
+        - requested_slot: username_entity
+    - slot_was_set:
+        - username_entity: Jeferson
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        give me a grammar lesson about verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === Bem vindo === NÃO informando valor para grammar_content_entity test 1
+    steps:
+    - user: |
+        hello
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Augusto Costa
+      intent: affirm
+    - slot_was_set:
+        - requested_slot: username_entity
+    - slot_was_set:
+        - username_entity: Augusto Costa
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        teach me
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === Bem vindo === NÃO informando valor para grammar_content_entity test 2
+    steps:
+    - user: |
+        hi
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Augusto Costa
+      intent: affirm
+    - slot_was_set:
+        - requested_slot: username_entity
+    - slot_was_set:
+        - username_entity: Augusto Costa
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        I want to learn
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === Bem vindo === NÃO informando valor para grammar_content_entity test 3
+    steps:
+    - user: |
+        good morning
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+    - user: |
+        Augusto Costa
+      intent: affirm
+    - slot_was_set:
+        - requested_slot: username_entity
+    - slot_was_set:
+        - username_entity: Augusto Costa
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        give me a grammar lesson
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_1 test 1
+    steps:
+    - user: |
+        teach me preposition please
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_1 test 2
+    steps:
+    - user: |
+        I want to learn preposition
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_1 test 3
+    steps:
+    - user: |
+        give me a grammar lesson about preposition
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_2 test 1
+    steps:
+    - user: |
+        teach me
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        teach me articles please
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: articles
+    - slot_was_set:
+        - grammar_content_entity: articles
+    - action: grammar_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_2 test 2
+    steps:
+    - user: |
+        I want to learn
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        I want to learn articles
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: articles
+    - slot_was_set:
+        - grammar_content_entity: articles
+    - action: grammar_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_2 test 3
+    steps:
+    - user: |
+        give me a grammar lesson
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        give me a grammar lesson about articles
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: articles
+    - slot_was_set:
+        - grammar_content_entity: articles
+    - action: grammar_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_3 test 1
+    steps:
+    - user: |
+        teach me in on at please
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: in on at
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: in on at
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_3 test 2
+    steps:
+    - user: |
+        I want to learn in on at
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: in on at
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: in on at
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: interactive_story_3 test 3
+    steps:
+    - user: |
+        give me a grammar lesson about in on at
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: in on at
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: in on at
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === informando valor para grammar_content_entity === speak_more test 1
+    steps:
+    - user: |
+        teach me verb please
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        speak more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === informando valor para grammar_content_entity === speak_more test 2
+    steps:
+    - user: |
+        I want to learn verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        explain
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === informando valor para grammar_content_entity === speak_more test 3
+    steps:
+    - user: |
+        give me a grammar lesson about verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        I didn't understand, explain more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === informando valor para grammar_content_entity === speak_more 2x test 1
+    steps:
+    - user: |
+        teach me verb please
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        speak more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        speak more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === informando valor para grammar_content_entity === speak_more 2x test 2
+    steps:
+    - user: |
+        I want to learn verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        explain
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        explain
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: grammar === informando valor para grammar_content_entity === speak_more 2x test 3
+    steps:
+    - user: |
+        give me a grammar lesson about verb
+      intent: init_grammar_learning
+      entities:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        I didn't understand, explain more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        I didn't understand, explain more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - grammar_content_entity: verb
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  ## ###################################-
+  ## QUESTIONNARIE
+  ## ###################################-
+
+  - story: Questionnarie part 1 test 1
+    steps:
+    - user: |
+        give me a question
+      intent: give_question
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        give me a preposition question
+      intent: give_question
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8a
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - user: |
+        the answer is for
+      intent: answer_question
+      entities:
+        - answer_question_entity: for
+        - answer_question_entity: for
+    - slot_was_set:
+        - answer_question_entity: for
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - user: |
+        of
+      intent: answer_question
+      entities:
+        - answer_question_entity: of
+        - answer_question_entity: of
+    - slot_was_set:
+        - answer_question_entity: of
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - user: |
+        the answer is at
+      intent: answer_question
+      entities:
+        - answer_question_entity: at
+        - answer_question_entity: at
+    - slot_was_set:
+        - answer_question_entity: at
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: at
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 1 test 2
+    steps:
+    - user: |
+        I want a question
+      intent: give_question
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        I want a preposition question
+      intent: give_question
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8a
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - user: |
+        for
+      intent: answer_question
+      entities:
+        - answer_question_entity: for
+        - answer_question_entity: for
+    - slot_was_set:
+        - answer_question_entity: for
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - user: |
+        the answer is of
+      intent: answer_question
+      entities:
+        - answer_question_entity: of
+        - answer_question_entity: of
+    - slot_was_set:
+        - answer_question_entity: of
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - user: |
+        at
+      intent: answer_question
+      entities:
+        - answer_question_entity: at
+        - answer_question_entity: at
+    - slot_was_set:
+        - answer_question_entity: at
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: at
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 1 test 3
+    steps:
+    - user: |
+        give me a question please
+      intent: give_question
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        give me a question about preposition
+      intent: give_question
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8a
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - user: |
+        the correct answer is for
+      intent: answer_question
+      entities:
+        - answer_question_entity: for
+        - answer_question_entity: for
+    - slot_was_set:
+        - answer_question_entity: for
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - user: |
+        the answer is of
+      intent: answer_question
+      entities:
+        - answer_question_entity: of
+        - answer_question_entity: of
+    - slot_was_set:
+        - answer_question_entity: of
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - user: |
+        at
+      intent: answer_question
+      entities:
+        - answer_question_entity: at
+        - answer_question_entity: at
+    - slot_was_set:
+        - answer_question_entity: at
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: at
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f014fe782e2b9fa8186cf3
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 2 test 1
+    steps:
+    - user: |
+        give me a preposition question
+      intent: give_question
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d83
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - to
+            - with
+    - user: |
+        the answer is to
+      intent: answer_question
+      entities:
+        - answer_question_entity: to
+        - answer_question_entity: to
+    - slot_was_set:
+        - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8b
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - to
+            - with
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8b
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - from
+            - with
+    - user: |
+        of
+      intent: answer_question
+      entities:
+        - answer_question_entity: of
+        - answer_question_entity: of
+    - slot_was_set:
+        - answer_question_entity: of
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8e
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - from
+            - with
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8e
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - from
+            - to
+    - user: |
+        the answer is to
+      intent: answer_question
+      entities:
+        - answer_question_entity: to
+        - answer_question_entity: to
+    - slot_was_set:
+        - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: to
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8e
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - from
+            - to
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 2 test 2
+    steps:
+    - user: |
+        I want a preposition question
+      intent: give_question
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d83
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - to
+            - with
+    - user: |
+        to
+      intent: answer_question
+      entities:
+        - answer_question_entity: to
+        - answer_question_entity: to
+    - slot_was_set:
+        - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8b
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - to
+            - with
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8b
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - from
+            - with
+    - user: |
+        the answer is of
+      intent: answer_question
+      entities:
+        - answer_question_entity: of
+        - answer_question_entity: of
+    - slot_was_set:
+        - answer_question_entity: of
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8e
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - from
+            - with
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8e
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - from
+            - to
+    - user: |
+        to
+      intent: answer_question
+      entities:
+        - answer_question_entity: to
+        - answer_question_entity: to
+    - slot_was_set:
+        - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: to
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8e
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - from
+            - to
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 2 test 3
+    steps:
+    - user: |
+        give me a question about preposition
+      intent: give_question
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d83
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - to
+            - with
+    - user: |
+        the correct answer is to
+      intent: answer_question
+      entities:
+        - answer_question_entity: to
+        - answer_question_entity: to
+    - slot_was_set:
+        - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8b
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - to
+            - with
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8b
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - from
+            - with
+    - user: |
+        of
+      intent: answer_question
+      entities:
+        - answer_question_entity: of
+        - answer_question_entity: of
+    - slot_was_set:
+        - answer_question_entity: of
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8e
+    - slot_was_set:
+        - question_options_entity:
+            - of
+            - from
+            - with
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8e
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - from
+            - to
+    - user: |
+        the answer is to
+      intent: answer_question
+      entities:
+        - answer_question_entity: to
+        - answer_question_entity: to
+    - slot_was_set:
+        - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: to
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f0193a782e2b9fa8186d07
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8e
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - from
+            - to
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 3 test 1
+    steps:
+    - user: |
+        give me a new word
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        give me a preposition question
+      intent: give_question
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8a
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - user: |
+        the answer is for
+      intent: answer_question
+      entities:
+        - answer_question_entity: for
+        - answer_question_entity: for
+    - slot_was_set:
+        - answer_question_entity: for
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - user: |
+        by
+      intent: answer_question
+      entities:
+        - answer_question_entity: by
+        - answer_question_entity: by
+    - slot_was_set:
+        - answer_question_entity: by
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - user: |
+        the answer is at
+      intent: answer_question
+      entities:
+        - answer_question_entity: at
+        - answer_question_entity: at
+    - slot_was_set:
+        - answer_question_entity: at
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: at
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 3 test 2
+    steps:
+    - user: |
+        I want to improve my vocabulary
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        I want a preposition question
+      intent: give_question
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8a
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - user: |
+        for
+      intent: answer_question
+      entities:
+        - answer_question_entity: for
+        - answer_question_entity: for
+    - slot_was_set:
+        - answer_question_entity: for
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - user: |
+        the answer is by
+      intent: answer_question
+      entities:
+        - answer_question_entity: by
+        - answer_question_entity: by
+    - slot_was_set:
+        - answer_question_entity: by
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - user: |
+        at
+      intent: answer_question
+      entities:
+        - answer_question_entity: at
+        - answer_question_entity: at
+    - slot_was_set:
+        - answer_question_entity: at
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: at
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 3 test 3
+    steps:
+    - user: |
+        learn some words
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+    - user: |
+        give me a question about preposition
+      intent: give_question
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8a
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - user: |
+        the correct answer is for
+      intent: answer_question
+      entities:
+        - answer_question_entity: for
+        - answer_question_entity: for
+    - slot_was_set:
+        - answer_question_entity: for
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - question_options_entity:
+            - off
+            - with
+            - for
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8c
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - user: |
+        by
+      intent: answer_question
+      entities:
+        - answer_question_entity: by
+        - answer_question_entity: by
+    - slot_was_set:
+        - answer_question_entity: by
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - of
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - user: |
+        the answer is at
+      intent: answer_question
+      entities:
+        - answer_question_entity: at
+        - answer_question_entity: at
+    - slot_was_set:
+        - answer_question_entity: at
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: at
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02bef782e2b9fa8186d41
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d8d
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - in
+            - at
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 4 test 1
+    steps:
+    - user: |
+        teach me
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        give me a question
+      intent: give_question
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d84
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - of
+            - to
+    - user: |
+        the answer is to
+      intent: answer_question
+      entities:
+        - answer_question_entity: to
+        - answer_question_entity: to
+    - slot_was_set:
+        - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - of
+            - to
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - for
+            - in
+    - user: |
+        in
+      intent: answer_question
+      entities:
+        - answer_question_entity: in
+        - answer_question_entity: in
+    - slot_was_set:
+        - answer_question_entity: in
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - for
+            - in
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - from
+    - user: |
+        the answer is from
+      intent: answer_question
+      entities:
+        - answer_question_entity: from
+        - answer_question_entity: from
+    - slot_was_set:
+        - answer_question_entity: from
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: from
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - from
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 4 test 2
+    steps:
+    - user: |
+        I want to learn
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        I want a question
+      intent: give_question
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d84
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - of
+            - to
+    - user: |
+        to
+      intent: answer_question
+      entities:
+        - answer_question_entity: to
+        - answer_question_entity: to
+    - slot_was_set:
+        - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - of
+            - to
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - for
+            - in
+    - user: |
+        the answer is in
+      intent: answer_question
+      entities:
+        - answer_question_entity: in
+        - answer_question_entity: in
+    - slot_was_set:
+        - answer_question_entity: in
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - for
+            - in
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - from
+    - user: |
+        from
+      intent: answer_question
+      entities:
+        - answer_question_entity: from
+        - answer_question_entity: from
+    - slot_was_set:
+        - answer_question_entity: from
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: from
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - from
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 4 test 3
+    steps:
+    - user: |
+        give me a grammar lesson
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        give me a question please
+      intent: give_question
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d84
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - of
+            - to
+    - user: |
+        the correct answer is to
+      intent: answer_question
+      entities:
+        - answer_question_entity: to
+        - answer_question_entity: to
+    - slot_was_set:
+        - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - of
+            - to
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - for
+            - in
+    - user: |
+        in
+      intent: answer_question
+      entities:
+        - answer_question_entity: in
+        - answer_question_entity: in
+    - slot_was_set:
+        - answer_question_entity: in
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - for
+            - in
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - from
+    - user: |
+        the answer is from
+      intent: answer_question
+      entities:
+        - answer_question_entity: from
+        - answer_question_entity: from
+    - slot_was_set:
+        - answer_question_entity: from
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: from
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - from
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 5 test 1
+    steps:
+    - user: |
+        teach me
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        give me a question
+      intent: give_question
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d84
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - of
+            - to
+    - user: |
+        the answer is to
+      intent: answer_question
+      entities:
+        - answer_question_entity: to
+        - answer_question_entity: to
+    - slot_was_set:
+        - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - of
+            - to
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - for
+            - in
+    - user: |
+        in
+      intent: answer_question
+      entities:
+        - answer_question_entity: in
+        - answer_question_entity: in
+    - slot_was_set:
+        - answer_question_entity: in
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - for
+            - in
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - from
+    - user: |
+        the answer is from
+      intent: answer_question
+      entities:
+        - answer_question_entity: from
+        - answer_question_entity: from
+    - slot_was_set:
+        - answer_question_entity: from
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: from
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - from
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        teach me
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Questionnarie part 5 test 2
+    steps:
+    - user: |
+        I want to learn
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        I want a question
+      intent: give_question
+    - action: question_form
+    - active_loop: question_form
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d84
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - of
+            - to
+    - user: |
+        to
+      intent: answer_question
+      entities:
+        - answer_question_entity: to
+        - answer_question_entity: to
+    - slot_was_set:
+        - answer_question_entity: to
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - of
+            - to
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d85
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - for
+            - in
+    - user: |
+        the answer is in
+      intent: answer_question
+      entities:
+        - answer_question_entity: in
+        - answer_question_entity: in
+    - slot_was_set:
+        - answer_question_entity: in
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - question_options_entity:
+            - with
+            - for
+            - in
+    - slot_was_set:
+        - requested_slot: answer_question_entity
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - from
+    - user: |
+        from
+      intent: answer_question
+      entities:
+        - answer_question_entity: from
+        - answer_question_entity: from
+    - slot_was_set:
+        - answer_question_entity: from
+    - action: question_form
+    - slot_was_set:
+        - answer_question_entity: from
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - questionnarie_id_entity: 67f02377782e2b9fa8186d22
+    - slot_was_set:
+        - current_question_id_entity: 675defbad53f131231833d86
+    - slot_was_set:
+        - question_options_entity:
+            - by
+            - with
+            - from
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_questions_completed
+    - slot_was_set:
+        - answer_question_entity: null
+    - slot_was_set:
+        - grammar_content_entity: null
+    - slot_was_set:
+        - questionnarie_id_entity: null
+    - slot_was_set:
+        - current_question_id_entity: null
+    - slot_was_set:
+        - question_options_entity: null
+    - action: utter_what_do_you_want_now_p2
+    - user: |
+        I want to learn
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+    - slot_was_set:
+        - requested_slot: grammar_content_entity
+    - user: |
+        preposition
+      intent: grammar_response
+      entities:
+        - grammar_content_entity: preposition
+        - grammar_content_entity: preposition
+    - slot_was_set:
+        - grammar_content_entity: preposition
+    - action: grammar_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  ## ###################################-
+  ## Regras de teste automáticas
+  ## ###################################-
+  
+  - story: Say goodbye anytime the user says goodbye test 1
+    steps:
+    - user: |
+        bye
+      intent: goodbye
+    - action: utter_goodbye
+
+  - story: Say goodbye anytime the user says goodbye test 2
+    steps:
+    - user: |
+        goodbye
+      intent: goodbye
+    - action: utter_goodbye
+
+  - story: Say goodbye anytime the user says goodbye test 3
+    steps:
+    - user: |
+        see you later
+      intent: goodbye
+    - action: utter_goodbye
+
+  - story: Say 'I am a bot' anytime the user challenges test 1
+    steps:
+    - user: |
+        are you a bot?
+      intent: bot_challenge
+    - action: utter_iamabot
+
+  - story: Say 'I am a bot' anytime the user challenges test 2
+    steps:
+    - user: |
+        are you a human?
+      intent: bot_challenge
+    - action: utter_iamabot
+
+  - story: Say 'I am a bot' anytime the user challenges test 3
+    steps:
+    - user: |
+        am I talking to a bot?
+      intent: bot_challenge
+    - action: utter_iamabot
+
+  - story: Activate Request name Form test 1
+    steps:
+    - user: |
+        hello
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+
+  - story: Activate Request name Form test 2
+    steps:
+    - user: |
+        hi
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+
+  - story: Activate Request name Form test 3
+    steps:
+    - user: |
+        good morning
+      intent: greet
+    - action: username_form
+    - active_loop: username_form
+
+  - story: Submit Request name Form test 1
+    steps:
+    - active_loop: username_form
+    - action: username_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+
+  - story: Submit Request name Form test 2
+    steps:
+    - active_loop: username_form
+    - action: username_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+
+  - story: Submit Request name Form test 3
+    steps:
+    - active_loop: username_form
+    - action: username_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: utter_greet
+    - action: utter_what_do_you_want_now_p1
+
+  - story: Activate Grammar learning Form test 1
+    steps:
+    - user: |
+        teach me
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+
+  - story: Activate Grammar learning Form test 2
+    steps:
+    - user: |
+        I want to learn
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+
+  - story: Activate Grammar learning Form test 3
+    steps:
+    - user: |
+        give me a grammar lesson
+      intent: init_grammar_learning
+    - action: grammar_form
+    - active_loop: grammar_form
+
+  - story: Activate Grammar learning Form pelo speak_more test 1
+    steps:
+    - user: |
+        speak more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+
+  - story: Activate Grammar learning Form pelo speak_more test 2
+    steps:
+    - user: |
+        explain
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+
+  - story: Activate Grammar learning Form pelo speak_more test 3
+    steps:
+    - user: |
+        I didn't understand, explain more
+      intent: speak_more
+    - action: grammar_form
+    - active_loop: grammar_form
+
+  - story: Submit Grammar learning Form test 1
+    steps:
+    - active_loop: grammar_form
+    - action: grammar_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Submit Grammar learning Form test 2
+    steps:
+    - active_loop: grammar_form
+    - action: grammar_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Submit Grammar learning Form test 3
+    steps:
+    - active_loop: grammar_form
+    - action: grammar_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_get_grammar
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Activate Vocabulary learning Form test 1
+    steps:
+    - user: |
+        give me a new word
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: Activate Vocabulary learning Form test 2
+    steps:
+    - user: |
+        I want to improve my vocabulary
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: Activate Vocabulary learning Form test 3
+    steps:
+    - user: |
+        learn some words
+      intent: init_vocabulary_learning
+    - action: action_get_vocabulary
+    - action: utter_what_do_you_want_now_p1
+
+  - story: Activate Question Form test 1
+    steps:
+    - user: |
+        give me a question
+      intent: give_question
+    - action: question_form
+    - active_loop: question_form
+
+  - story: Activate Question Form test 2
+    steps:
+    - user: |
+        I want a question
+      intent: give_question
+    - action: question_form
+    - active_loop: question_form
+
+  - story: Activate Question Form test 3
+    steps:
+    - user: |
+        give me a preposition question
+      intent: give_question
+      entities:
+        - grammar_content_entity: preposition
+    - action: question_form
+    - active_loop: question_form
+
+  - story: Submit Question Form test 1
+    steps:
+    - active_loop: question_form
+    - action: question_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_questions_completed
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Submit Question Form test 2
+    steps:
+    - active_loop: question_form
+    - action: question_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_questions_completed
+    - action: utter_what_do_you_want_now_p2
+
+  - story: Submit Question Form test 3
+    steps:
+    - active_loop: question_form
+    - action: question_form
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: action_questions_completed
+    - action: utter_what_do_you_want_now_p2
+
+  - story: unhappy path - Finalize Question Form test 1
+    steps:
+    - active_loop: question_form
+    - user: |
+        finish
+      intent: finalize
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: utter_goodbye
+
+  - story: unhappy path - Finalize Question Form test 2
+    steps:
+    - active_loop: question_form
+    - user: |
+        finalize
+      intent: finalize
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: utter_goodbye
+
+  - story: unhappy path - Finalize Question Form test 3
+    steps:
+    - active_loop: question_form
+    - user: |
+        stop
+      intent: finalize
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - action: utter_goodbye
+
+  - story: Finalize Flux Form test 1
+    steps:
+    - user: |
+        finish
+      intent: finalize
+    - action: utter_goodbye
+
+  - story: Finalize Flux Form test 2
+    steps:
+    - user: |
+        finalize
+      intent: finalize
+    - action: utter_goodbye
+
+  - story: Finalize Flux Form test 3
+    steps:
+    - user: |
+        end
+      intent: finalize
+    - action: utter_goodbye
